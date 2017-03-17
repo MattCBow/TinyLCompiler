@@ -322,7 +322,6 @@ static void program()
 		stmtlist();
 		next_token();
 		if( strcmp(token,'.') != 0) break;
-		out('.');
 		return;
 	}
 	ERROR("Program error.  Current input symbol is %c\n", token);
