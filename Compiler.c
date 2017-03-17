@@ -42,7 +42,6 @@
 
  ---------------------------------------------------
  */
- #include <string.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -80,6 +79,8 @@ static int expr();
 static int variable();
 static int digit();
 
+#include <string.h>
+int reg, left_reg, right_reg, offset;
 /*************************************************************************/
 /* Definitions for recursive descending parser LL(1)                     */
 /*************************************************************************/
@@ -113,8 +114,6 @@ static int variable()
 
 static int expr()
 {
-	int reg, left_reg, right_reg;
-
 	switch (token) {
 	case '1':
 	case '2':
@@ -197,7 +196,6 @@ static void assign()
 	case 'n':
 	case 'o':
 	case 'p':
-		int reg, left_reg, right_reg, offset;
 		offset = (token-'a')*4;
 		left_reg = variable();
 		if( strcmp(token,'=') != 0) break;
@@ -214,8 +212,6 @@ static void assign()
 
 static void print()
 {
-	int reg, left_reg, right_reg, offset;
-
 	switch (token){
 	case '#':
 		next_token();
