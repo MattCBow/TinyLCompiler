@@ -180,8 +180,6 @@ static int expr()
 
 static void assign()
 {
-	int reg, left_reg, right_reg, offset;
-
 	switch(token){
 	case 'a':
 	case 'b':
@@ -199,6 +197,7 @@ static void assign()
 	case 'n':
 	case 'o':
 	case 'p':
+		int reg, left_reg, right_reg, offset;
 		offset = (token-'a')*4;
 		left_reg = variable();
 		if( strcmp(token,'=') != 0) break;
