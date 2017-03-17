@@ -178,6 +178,7 @@ static int expr()
 
 static void assign()
 {
+	printf("ASSIGN");
 	switch(token){
 	case 'a':
 	case 'b':
@@ -211,6 +212,7 @@ static void assign()
 
 static void print()
 {
+	printf("PRINT");
 	switch (token){
 	case '#':
 		next_token();
@@ -226,6 +228,7 @@ static void print()
 
 static void stmt()
 {
+	printf("STMT");
 	switch(token){
 	case 'a':
 	case 'b':
@@ -256,6 +259,7 @@ static void stmt()
 
 static void morestmts()
 {
+	printf("MORESTMTS");
 	switch(token){
 	case ';':
 		next_token();
@@ -271,6 +275,7 @@ static void morestmts()
 
 static void stmtlist()
 {
+	printf("STMTLIST");
 	switch(token){
 	case 'a':
 	case 'b':
@@ -300,6 +305,7 @@ static void stmtlist()
 
 static void program()
 {
+	printf("PROGRAM");
 	switch(token){
 	case 'a':
 	case 'b':
