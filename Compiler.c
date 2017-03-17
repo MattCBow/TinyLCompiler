@@ -173,12 +173,10 @@ static int expr()
 	}
 	ERROR("Symbol %c unknown\n", token);
 	exit(EXIT_FAILURE);
-
 }
 
 static void assign()
 {
-	printf("ASSIGN\n");
 	switch(token){
 	case 'a':
 	case 'b':
@@ -212,7 +210,6 @@ static void assign()
 
 static void print()
 {
-	printf("PRINT\n");
 	switch (token){
 	case '#':
 		next_token();
@@ -228,7 +225,6 @@ static void print()
 
 static void stmt()
 {
-	printf("STMT\n");
 	switch(token){
 	case 'a':
 	case 'b':
@@ -259,7 +255,6 @@ static void stmt()
 
 static void morestmts()
 {
-	printf("MORESTMTS\n");
 	switch(token){
 	case ';':
 		next_token();
@@ -275,7 +270,6 @@ static void morestmts()
 
 static void stmtlist()
 {
-	printf("STMTLIST\n");
 	switch(token){
 	case 'a':
 	case 'b':
@@ -305,7 +299,6 @@ static void stmtlist()
 
 static void program()
 {
-	printf("PROGRAM\n");
 	switch(token){
 	case 'a':
 	case 'b':
