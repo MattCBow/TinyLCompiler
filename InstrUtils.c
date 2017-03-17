@@ -71,7 +71,7 @@ void PrintInstructionList(FILE * outfile, Instruction * instr)
 	}
 	Instruction *cur;
 	cur = instr;
-	printf('Were Printing\n');
+	printf("Were Printing\n");
 	do{
 		printf("One Instruction at a time");
 		PrintInstruction(outfile, cur);
