@@ -141,7 +141,7 @@ static int expr()
 	case 'l':
 	case 'o':
 	case 'p':
-		reg = assign();
+		reg = variable()
 		return(reg);
 	case '%':
 		next_token();
