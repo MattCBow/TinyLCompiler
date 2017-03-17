@@ -15,6 +15,7 @@
 
 int main()
 {
+	printf("Were doing something\n");
 	Instruction *head;
 
 	head = ReadInstructionList(stdin);
@@ -24,8 +25,11 @@ int main()
 	}
 
 	/* YOUR CODE GOES HERE */
+	printf("Come on guy\n");
+
 
 	if (head)
+		printf("Don't be prick about it\n");
 		PrintInstructionList(stdout, head);
 
 	return EXIT_SUCCESS;
