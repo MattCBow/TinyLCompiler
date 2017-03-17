@@ -25,9 +25,8 @@ int main()
 
 	/* YOUR CODE GOES HERE */
 
-	if (head) 
+	if (head)
 		PrintInstructionList(stdout, head);
-	
+
 	return EXIT_SUCCESS;
 }
-

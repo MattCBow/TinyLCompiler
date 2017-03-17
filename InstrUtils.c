@@ -70,7 +70,12 @@ void PrintInstructionList(FILE * outfile, Instruction * instr)
 		exit(EXIT_FAILURE);
 	}
 
-	/* YOUR CODE GOES HERE */
+	cur = instr;
+	do{
+		PrintInstruction(outfile,cur);
+		cur = cur->next;
+	}while(cur != head);
+
 
 }
 
@@ -231,4 +236,3 @@ Instruction *LastInstruction(Instruction * instr)
 		instr = instr->next;
 	return instr;
 }
-
