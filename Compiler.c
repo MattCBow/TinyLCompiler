@@ -206,11 +206,11 @@ static void assign()
 		right_reg = expr();
 		reg = next_register();
 		CodeGen(STOREAI, right_reg, 0, offset);
-		return();
+		return;
 	}
 	ERROR("Program error.  Current input symbol is %c\n", token);
 	exit(EXIT_FAILURE);
-	return();
+	return;
 }
 
 static void print()
@@ -223,11 +223,11 @@ static void print()
 		offset = (token-'a')*4;
 		left_reg = variable();
 		CodeGen(OUTPUTAI, 0, offset, EMPTY_FIELD);
-		return();
+		return;
 	}
 	ERROR("Program error.  Current input symbol is %c\n", token);
 	exit(EXIT_FAILURE);
-	return();
+	return;
 }
 
 static void stmt()
@@ -250,14 +250,14 @@ static void stmt()
 	case 'o':
 	case 'p':
 		assign();
-		return();
+		return;
 	case '#':
 		print();
-		return();
+		return;
 	}
 	ERROR("Program error.  Current input symbol is %c\n", token);
 	exit(EXIT_FAILURE);
-	return();
+	return;
 }
 
 static void morestmts()
@@ -266,13 +266,13 @@ static void morestmts()
 	case ';':
 		next_token();
 		stmtlist();
-		return();
+		return;
 	default:
-		return();
+		return;
 	}
 	ERROR("Program error.  Current input symbol is %c\n", token);
 	exit(EXIT_FAILURE);
-	return();
+	return;
 }
 
 static void stmtlist()
@@ -297,11 +297,11 @@ static void stmtlist()
 	case '#':
 		stmt();
 		morestmts();
-		return();
+		return;
 	}
 	ERROR("Program error.  Current input symbol is %c\n", token);
 	exit(EXIT_FAILURE);
-	return();
+	return;
 }
 
 static void program()
@@ -328,11 +328,11 @@ static void program()
 		next_token();
 		if( strcmp(token,'.') != 0) break;
 		out('.');
-		return();
+		return;
 	}
 	ERROR("Program error.  Current input symbol is %c\n", token);
 	exit(EXIT_FAILURE);
-	return();
+	return;
 }
 
 /*************************************************************************/
