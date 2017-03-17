@@ -79,7 +79,6 @@ static int expr();
 static int variable();
 static int digit();
 
-#include <string.h>
 int reg, left_reg, right_reg, offset;
 /*************************************************************************/
 /* Definitions for recursive descending parser LL(1)                     */
@@ -198,7 +197,7 @@ static void assign()
 	case 'p':
 		offset = (token-'a')*4;
 		left_reg = variable();
-		if( strcmp(token,'=') != 0) break;
+		if(token == '=') break;
 		next_token();
 		right_reg = expr();
 		reg = next_register();
@@ -321,7 +320,7 @@ static void program()
 	case '#':
 		stmtlist();
 		next_token();
-		if( strcmp(token,'.') != 0) break;
+		if(token == '.') break;
 		return;
 	}
 	ERROR("Program error.  Current input symbol is %c\n", token);
