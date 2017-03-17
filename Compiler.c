@@ -112,6 +112,8 @@ static int variable()
 
 static int expr()
 {
+	int reg, left_reg, right_reg;
+
 	switch (token) {
 	case '1':
 	case '2':
@@ -123,7 +125,7 @@ static int expr()
 	case '8':
 	case '9':
 	case '0':
-		int reg = digit();
+		reg = digit();
 		return(reg);
 	case 'a':
 	case 'b':
@@ -139,34 +141,34 @@ static int expr()
 	case 'l':
 	case 'o':
 	case 'p':
-		int reg = assign();
+		reg = assign();
 		return(reg);
 	case '%':
 		next_token();
-		int left_reg = expr();
-		int right_reg = expr();
-		int reg = next_register();
+		left_reg = expr();
+		right_reg = expr();
+		reg = next_register();
 		CodeGen(DIV, left_reg, right_reg, reg);
 		return(reg);
 	case '*':
 		next_token();
-		int left_reg = expr();
-		int right_reg = expr();
-		int reg = next_register();
+		left_reg = expr();
+		right_reg = expr();
+		reg = next_register();
 		CodeGen(MUL, left_reg, right_reg, reg);
 		return(reg);
 	case '-':
 		next_token();
-		int left_reg = expr();
-		int right_reg = expr();
-		int reg = next_register();
+		left_reg = expr();
+		right_reg = expr();
+		reg = next_register();
 		CodeGen(SUB, left_reg, right_reg, reg);
 		return(reg);
 	case '+':
 		next_token();
-		int left_reg = expr();
-		int right_reg = expr();
-		int reg = next_register();
+		left_reg = expr();
+		right_reg = expr();
+		reg = next_register();
 		CodeGen(ADD, left_reg, right_reg, reg);
 		return(reg);
 	}
@@ -177,6 +179,8 @@ static int expr()
 
 static void assign()
 {
+	int reg, left_reg, right_reg;
+
 	switch(token){
 	case 'a':
 	case 'b':
@@ -195,11 +199,11 @@ static void assign()
 	case 'o':
 	case 'p':
 		offset = (token-'a')*4;
-		int left_reg = variable();
+		left_reg = variable();
 		if( strcmp(token,'=') != 0) break;
 		next_token();
-		int right_reg = expr();
-		int reg = next_register();
+		right_reg = expr();
+		reg = next_register();
 		CodeGen(STOREAI, right_reg, 0, offset);
 		return();
 	}
@@ -214,7 +218,7 @@ static void print()
 	case '#':
 		next_token();
 		offset = (token-'a')*4;
-		int left_reg = variable();
+		left_reg = variable();
 		CodeGen(OUTPUTAI, 0, offset, EMPTY_FIELD);
 		return();
 	}
