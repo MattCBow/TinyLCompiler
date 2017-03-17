@@ -69,15 +69,8 @@ void PrintInstructionList(FILE * outfile, Instruction * instr)
 		ERROR("No instructions\n");
 		exit(EXIT_FAILURE);
 	}
-	Instruction *cur;
-	cur = instr;
-	printf("Were Printing\n");
-	do{
-		printf("One Instruction at a time");
-		PrintInstruction(outfile, cur);
-		cur = cur->next;
-	}while(cur != instr);
 
+	/* YOUR CODE GOES HERE */
 
 }
 
