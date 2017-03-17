@@ -318,7 +318,6 @@ static void program()
 	case 'p':
 	case '#':
 		stmtlist();
-		next_token();
 		if(token != '.') break;
 		return;
 	}
