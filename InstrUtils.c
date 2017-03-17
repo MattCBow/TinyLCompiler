@@ -74,7 +74,7 @@ void PrintInstructionList(FILE * outfile, Instruction * instr)
 	do{
 		PrintInstruction(outfile,cur);
 		cur = cur->next;
-	}while(cur != head);
+	}while(cur != instr);
 
 
 }
