@@ -198,7 +198,7 @@ static void assign()
 	case 'p':
 		offset = (token-'a')*4;
 		left_reg = variable();
-		if(token[0] == '=') break;
+		if(*token == '=') break;
 		next_token();
 		right_reg = expr();
 		reg = next_register();
