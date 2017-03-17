@@ -17,8 +17,9 @@ int main()
 {
 	printf("Were doing something\n");
 	Instruction *head;
-
+	printf("Come on guy\n");``
 	head = ReadInstructionList(stdin);
+	printf("Don't be prick about it\n");
 	if (!head) {
 		WARNING("No instructions\n");
 		exit(EXIT_FAILURE);
