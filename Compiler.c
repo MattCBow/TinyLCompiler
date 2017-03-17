@@ -198,7 +198,7 @@ static void assign()
 	case 'p':
 		offset = (token-'a')*4;
 		left_reg = variable();
-		if(*token == '=') break;
+		if(token != '=') break;
 		next_token();
 		right_reg = expr();
 		reg = next_register();
@@ -326,7 +326,7 @@ static void program()
 	case '#':
 		stmtlist();
 		next_token();
-		if(token == '.') break;
+		if(token != '.') break;
 		return;
 	}
 	ERROR("Program error.  Current input symbol is %c\n", token);
