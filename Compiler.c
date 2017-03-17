@@ -141,7 +141,7 @@ static int expr()
 	case 'l':
 	case 'o':
 	case 'p':
-		reg = variable()
+		reg = variable();
 		return(reg);
 	case '%':
 		next_token();
@@ -179,7 +179,7 @@ static int expr()
 
 static void assign()
 {
-	int reg, left_reg, right_reg;
+	int reg, left_reg, right_reg, offset;
 
 	switch(token){
 	case 'a':
@@ -214,6 +214,8 @@ static void assign()
 
 static void print()
 {
+	int reg, left_reg, right_reg, offset;
+
 	switch (token){
 	case '#':
 		next_token();
