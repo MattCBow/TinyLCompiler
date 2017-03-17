@@ -70,7 +70,6 @@ void PrintInstructionList(FILE * outfile, Instruction * instr)
 		exit(EXIT_FAILURE);
 	}
 
-
 	Instruction *cur;
 	cur = instr;
 	printf("Were Printing\n");
@@ -78,8 +77,8 @@ void PrintInstructionList(FILE * outfile, Instruction * instr)
 		printf("One Instruction at a time");
 		PrintInstruction(outfile, cur);
 		cur = cur->next;
-	}while(cur != instr);
-	
+	}while(cur != NULL);
+
 
 }
 
