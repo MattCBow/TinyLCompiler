@@ -14,7 +14,7 @@
 #include "Utils.h"
 
 Instruction *childI(Instruction *parent){
-	printf("%p\n",parent);
+	printf("%d\n",parent->opcode);
 	Instruction *child;
 	for(child=parent; child; child=child->prev){
 		switch (parent->opcode) {
