@@ -154,7 +154,9 @@ int main()
 	}
 
 	Instruction *out;
-	for(out=head; out->opcode!=OUTPUTAI; out=out->next);
+	for(out=head; out->opcode!=OUTPUTAI; out=out->next){
+		printf("%d\n",opcode->opcode);
+	};
 	out->next = childI(out);
 	for(head=out;out->next;out=out->next) out->next->prev = out;
 
