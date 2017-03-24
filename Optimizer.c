@@ -153,6 +153,7 @@ int main()
 	}
 
 	Instruction *out;
+	printf("A");
 	for(out=head; out->opcode==OUTPUTAI; out=out->next);
 	printf("1");
 	out->next = childI(out);
