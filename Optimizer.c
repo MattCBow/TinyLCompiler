@@ -133,9 +133,9 @@ Instruction *childI(Instruction *parent){
 					return(child);
 				}
 				break;
-			}
 			default:
 				break;
+			}
 			break;
 		}
 	}
