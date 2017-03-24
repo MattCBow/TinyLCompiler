@@ -13,29 +13,6 @@
 #include "InstrUtils.h"
 #include "Utils.h"
 
-int main()
-{
-	Instruction *head;
-
-	head = ReadInstructionList(stdin);
-	if (!head) {
-		WARNING("No instructions\n");
-		exit(EXIT_FAILURE);
-	}
-
-	Instruction *out;
-	for(out=head; out->opcode==OUTPUTAI; out=out->next);
-	out->next = childI(out);
-	for(head=out;out->next;out=out->next) out->next->prev = out;
-
-
-	if (head)
-		PrintInstructionList(stdout, head);
-
-	return EXIT_SUCCESS;
-}
-
-
 Instruction *childI(Instruction *parent){
 	Instruction *child;
 	for(child=parent; child; child=child->prev){
@@ -154,4 +131,26 @@ Instruction *childI(Instruction *parent){
 			break;
 		}
 	}
+}
+
+int main()
+{
+	Instruction *head;
+
+	head = ReadInstructionList(stdin);
+	if (!head) {
+		WARNING("No instructions\n");
+		exit(EXIT_FAILURE);
+	}
+
+	Instruction *out;
+	for(out=head; out->opcode==OUTPUTAI; out=out->next);
+	out->next = childI(out);
+	for(head=out;out->next;out=out->next) out->next->prev = out;
+
+
+	if (head)
+		PrintInstructionList(stdout, head);
+
+	return EXIT_SUCCESS;
 }
