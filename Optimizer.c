@@ -18,10 +18,11 @@ Instruction *childI(Instruction *parent){
 	for(child=parent; child; child=child->prev){
 		switch (parent->opcode) {
 		case LOADI:				// 1 Constant => 1 Register
-			switch (child->opcode) {
+			switch (child->opcode){
 			default:
 				return(NULL);
 			break;
+			}
 		case LOADAI: 			// 1 Variable => 1 Register
 		case OUTPUTAI:		// 1 Variable => 1 Constant
 			switch (child->opcode) {
@@ -128,6 +129,7 @@ Instruction *childI(Instruction *parent){
 					return(child);
 				}
 				break;
+			}
 			break;
 		}
 	}
