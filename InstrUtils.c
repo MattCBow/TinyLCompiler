@@ -71,7 +71,7 @@ void PrintInstructionList(FILE * outfile, Instruction * instr)
 	}
 
 	Instruction *cur;
-	for(cur=instr;cur!=NULL;cur = cur->next;){
+	for(cur=instr;cur!=NULL;cur = cur->next){
 		PrintInstruction(outfile, cur);
 	}
 
