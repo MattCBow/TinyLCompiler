@@ -139,6 +139,7 @@ Instruction *childI(Instruction *parent){
 			break;
 		}
 	}
+	return(child);
 }
 
 int main()
