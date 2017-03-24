@@ -32,6 +32,8 @@ Instruction *childI(Instruction *parent){
 					return(child);
 				}
 				break;
+			default:
+				break;
 			}
 			break;
 		case STOREAI:			// 1 Register => 1 Variable
@@ -130,6 +132,8 @@ Instruction *childI(Instruction *parent){
 				}
 				break;
 			}
+			default:
+				break;
 			break;
 		}
 	}
