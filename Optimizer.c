@@ -26,7 +26,7 @@ Instruction *childI(Instruction *parent){
 		case OUTPUTAI:		// 1 Variable => 1 Constant
 			switch (child->opcode) {
 			case STOREAI:		// 1 Register => 1 Variable
-				if(parent->feild2==child->field3){
+				if(parent->field2==child->field3){
 					child->next = childI(child);
 					return(child);
 				}
@@ -36,7 +36,7 @@ Instruction *childI(Instruction *parent){
 		case STOREAI:			// 1 Register => 1 Variable
 			switch (child->opcode) {
 			case LOADI: 		// 1 Constant => 1 Register
-				if(parent->feild1==child->feild2){
+				if(parent->field1==child->field2){
 					child->next=childI(child);
 					return(child);
 				}
@@ -46,7 +46,7 @@ Instruction *childI(Instruction *parent){
 			case SUB:
 			case MUL:
 			case DIV:
-				if(parent->feild1==child->feild3){
+				if(parent->field1==child->field3){
 					child->next=childI(child);
 					return(child);
 				}
@@ -59,31 +59,31 @@ Instruction *childI(Instruction *parent){
 		case DIV:					// 2 Registers => 1 Register
 			switch (child->opcode) {
 			case LOADI: 		// 1 Constant => 1 Register
-				if(parent->feild1==child->feild2 || parent->feild2==child->feild2){
+				if(parent->field1==child->field2 || parent->field2==child->field2){
 					// SET child_1
 					Instruction *child_1, *child_2;
 					child_1=childI(child);
 					// HOLD parent
 					OpCode opcode;
-					int feild1, feild2, feild3, find_feild;
+					int field1, field2, field3, find_field;
 					opcode = parent->opcode;
-					feild1 = parent->field1;
-					feild2 = parent->field2;
-					feild3 = parent->field3;
-					if(parent->feild1==child->feild2) find_feild = feild2;
-					if(parent->feild2==child->feild2) find_feild = feild1;
+					field1 = parent->field1;
+					field2 = parent->field2;
+					field3 = parent->field3;
+					if(parent->field1==child->field2) find_field = field2;
+					if(parent->field2==child->field2) find_field = field1;
 					// REPLACE parent
 					parent->opcode = STOREAI;
-					parent->feild1 = find_feild;
+					parent->field1 = find_field;
 					parent->field2 = 0;
 					parent->field3 = 0;
 					// FIND child_2
 					child_2 = childI(parent);
 					// RESET parent
 					parent->opcode = opcode;
-					parent->field1 = feild1;
-					parent->field2 = feild2;
-					parent->field3 = feild3;
+					parent->field1 = field1;
+					parent->field2 = field2;
+					parent->field3 = field3;
 					// Connect child_1 and child_2
 					for(child=child_1; child_1->next; child_1=child_1->next);
 					child_1->next=child_2;
@@ -96,31 +96,31 @@ Instruction *childI(Instruction *parent){
 			case SUB:
 			case MUL:
 			case DIV:
-				if(parent->feild1==child->feild3 || parent->feild2==child->feild3){
+				if(parent->field1==child->field3 || parent->field2==child->field3){
 					// SET child_1
 					Instruction *child_1, *child_2;
 					child_1=childI(child);
 					// HOLD parent
 					OpCode opcode;
-					int feild1, feild2, feild3, find_feild;
+					int field1, field2, field3, find_field;
 					opcode = parent->opcode;
-					feild1 = parent->field1;
-					feild2 = parent->field2;
-					feild3 = parent->field3;
-					if(parent->feild1==child->feild2) find_feild = feild2;
-					if(parent->feild2==child->feild2) find_feild = feild1;
+					field1 = parent->field1;
+					field2 = parent->field2;
+					field3 = parent->field3;
+					if(parent->field1==child->field2) find_field = field2;
+					if(parent->field2==child->field2) find_field = field1;
 					// REPLACE parent
 					parent->opcode = STOREAI;
-					parent->feild1 = find_feild;
+					parent->field1 = find_field;
 					parent->field2 = 0;
 					parent->field3 = 0;
 					// FIND child_2
 					child_2 = childI(parent);
 					// RESET parent
 					parent->opcode = opcode;
-					parent->field1 = feild1;
-					parent->field2 = feild2;
-					parent->field3 = feild3;
+					parent->field1 = field1;
+					parent->field2 = field2;
+					parent->field3 = field3;
 					// Connect child_1 and child_2
 					for(child=child_1; child_1->next; child_1=child_1->next);
 					child_1->next=child_2;
