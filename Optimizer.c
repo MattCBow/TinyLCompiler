@@ -158,7 +158,7 @@ int main()
 	for(head=out;out->next;out=out->next) out->next->prev = out;
 
 
-	if (head)
+	if (out)
 		PrintInstructionList(stdout, head);
 
 	return EXIT_SUCCESS;
