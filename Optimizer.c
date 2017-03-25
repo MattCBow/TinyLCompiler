@@ -157,7 +157,7 @@ int main()
 	for(out=head; out->opcode!=OUTPUTAI; out=out->next);
 	out->next = childI(out);
 	//for(head=out;out->next;out=out->next) out->next->prev = out;
-
+	printf("\n\n");
 	if (out)
 		PrintInstructionList(stdout, head);
 
