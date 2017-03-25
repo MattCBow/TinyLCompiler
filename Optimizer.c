@@ -90,8 +90,10 @@ Instruction *childI(Instruction *parent){
 					printf("-------\n");
 					PrintInstruction(stdout,parent);
 					printf("-------\n");
-					//printf('%p',find_field);
-					//child_2 = childI(parent);
+					child_2 = childI(parent);
+					printf("-------\n");
+					PrintInstruction(stdout,parent);
+					printf("-------\n");
 					//printf('%d',find_field);
 					// RESET parent
 					parent->opcode = opcode;
