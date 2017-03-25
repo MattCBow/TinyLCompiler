@@ -111,6 +111,7 @@ Instruction *childI(Instruction *parent){
 			case DIV:
 				if(parent->field1==child->field3 || parent->field2==child->field3){
 					// HOLD parent
+					printf("1A. -------\n");
 					OpCode opcode;
 					int field1, field2, field3, find_field;
 					opcode = parent->opcode;
@@ -125,13 +126,13 @@ Instruction *childI(Instruction *parent){
 					parent->field2 = 0;
 					parent->field3 = 0;
 					// FIND child_2
-					printf("1A. -------\n");
-					PrintInstruction(stdout,parent);
-					child_1=childI(child);
 					printf("2A. -------\n");
 					PrintInstruction(stdout,parent);
-					child_2 = childI(parent);
+					child_1=childI(child);
 					printf("3A. -------\n");
+					PrintInstruction(stdout,parent);
+					child_2 = childI(parent);
+					printf("4A. -------\n");
 					PrintInstruction(stdout,parent);
 					// RESET parent
 					parent->opcode = opcode;
