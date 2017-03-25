@@ -67,9 +67,9 @@ Instruction *childI(Instruction *parent){
 			switch (child->opcode) {
 			case LOADI: 		// 1 Constant => 1 Register
 				if(parent->field1==child->field2 || parent->field2==child->field2){
-					//SET child_1
-					Instruction *child_1;//, *child_2;
-					child_1=childI(child);/*
+					// SET child_1
+					Instruction *child_1, *child_2;
+					child_1=childI(child);
 					// HOLD parent
 					OpCode opcode;
 					int field1, field2, field3, find_field;
@@ -85,17 +85,16 @@ Instruction *childI(Instruction *parent){
 					parent->field2 = 0;
 					parent->field3 = 0;
 					// FIND child_2
-					child_2 = childI(parent);
+					//child_2 = childI(parent);
 					// RESET parent
 					parent->opcode = opcode;
 					parent->field1 = field1;
 					parent->field2 = field2;
 					parent->field3 = field3;
 					// Connect child_1 and child_2
-					for(child=child_1; child_1->next; child_1=child_1->next);
-					child_1->next=child_2;
+					//for(child=child_1; child_1->next; child_1=child_1->next);
+					//child_1->next=child_2;
 					// return
-					*/
 					child->next = child_1;
 					return(child);
 				}
@@ -107,8 +106,8 @@ Instruction *childI(Instruction *parent){
 			case DIV:
 				if(parent->field1==child->field3 || parent->field2==child->field3){
 					// SET child_1
-					Instruction *child_1;//, *child_2;
-					child_1=childI(child);/*
+					Instruction *child_1, *child_2;
+					child_1=childI(child);
 					// HOLD parent
 					OpCode opcode;
 					int field1, field2, field3, find_field;
@@ -124,17 +123,16 @@ Instruction *childI(Instruction *parent){
 					parent->field2 = 0;
 					parent->field3 = 0;
 					// FIND child_2
-					child_2 = childI(parent);
+					//child_2 = childI(parent);
 					// RESET parent
 					parent->opcode = opcode;
 					parent->field1 = field1;
 					parent->field2 = field2;
 					parent->field3 = field3;
 					// Connect child_1 and child_2
-					for(child=child_1; child_1->next; child_1=child_1->next);
-					child_1->next=child_2;
+					//for(child=child_1; child_1->next; child_1=child_1->next);
+					//child_1->next=child_2;
 					// return
-					*/
 					child->next = child_1;
 					return(child);
 				}
