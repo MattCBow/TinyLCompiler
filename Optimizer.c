@@ -69,6 +69,7 @@ Instruction *childI(Instruction *parent){
 				if(parent->field1==child->field2 || parent->field2==child->field2){
 					// HOLD parent
 					printf("1B. -------\n");
+					PrintInstruction(stdout,parent);
 					OpCode opcode;
 					int field1, field2, field3, find_field;
 					opcode = parent->opcode;
@@ -112,6 +113,7 @@ Instruction *childI(Instruction *parent){
 				if(parent->field1==child->field3 || parent->field2==child->field3){
 					// HOLD parent
 					printf("1A. -------\n");
+					PrintInstruction(stdout,parent);
 					OpCode opcode;
 					int field1, field2, field3, find_field;
 					opcode = parent->opcode;
