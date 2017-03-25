@@ -160,8 +160,8 @@ int main()
 	out->next = childI(out);
 	//for(head=out;out->next;out=out->next) out->next->prev = out;
 
-	if (out)
-		PrintInstructionList(stdout, head);
+	//if (out)
+		//PrintInstructionList(stdout, head);
 
 	return EXIT_SUCCESS;
 }
