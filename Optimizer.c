@@ -85,7 +85,7 @@ Instruction *childI(Instruction *parent){
 					//printf('%d',find_field);
 					printf('%i',find_field);
 					child_1=childI(child);
-					printf('%p',find_field);
+					//printf('%p',find_field);
 					//child_2 = childI(parent);
 					//printf('%d',find_field);
 					// RESET parent
@@ -124,7 +124,7 @@ Instruction *childI(Instruction *parent){
 					// FIND child_2
 					printf('%i',find_field);
 					child_1=childI(child);
-					printf('%p',find_field);
+					//printf('%p',find_field);
 					//child_2 = childI(parent);
 					//printf('%d',find_field);
 					// RESET parent
