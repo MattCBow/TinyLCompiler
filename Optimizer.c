@@ -26,7 +26,7 @@ Instruction *childI(Instruction *parent){
 		case LOADI:				// 1 Constant => 1 Register
 			switch (child->opcode){
 			default:
-				if(parent->opcode==child->opcode)end = true;
+				if(parent->opcode==child->opcode) match = END;
 				break;
 			}
 			break;
@@ -71,7 +71,7 @@ Instruction *childI(Instruction *parent){
 			case MUL:
 			case DIV:
 				if(parent->field1==child->field3) match=SPLIT;
-				if(parent->field2==child->field3)	smatch=SPLIT;
+				if(parent->field2==child->field3)	match=SPLIT;
 				break;
 			default:
 				break;
