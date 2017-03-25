@@ -85,8 +85,7 @@ Instruction *childI(Instruction *parent){
 		case NEXT:
 			child->next = childI(child);
 			return(child);
-		case SPLIT:
-			// SET child_1
+		case SPLIT
 			Instruction *child_1;//, *child_2;
 			child_1=childI(child);
 			// HOLD parent
