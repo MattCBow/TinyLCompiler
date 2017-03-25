@@ -67,8 +67,6 @@ Instruction *childI(Instruction *parent){
 			switch (child->opcode) {
 			case LOADI: 		// 1 Constant => 1 Register
 				if(parent->field1==child->field2 || parent->field2==child->field2){
-					// SET child_1
-					child_1=childI(child);
 					// HOLD parent
 					OpCode opcode;
 					int field1, field2, field3, find_field;
@@ -84,6 +82,7 @@ Instruction *childI(Instruction *parent){
 					parent->field2 = 0;
 					parent->field3 = 0;
 					// FIND child_2
+					child_1=childI(child);
 					child_2 = childI(parent);
 					// RESET parent
 					parent->opcode = opcode;
@@ -104,8 +103,6 @@ Instruction *childI(Instruction *parent){
 			case MUL:
 			case DIV:
 				if(parent->field1==child->field3 || parent->field2==child->field3){
-					// SET child_1
-					child_1=childI(child);
 					// HOLD parent
 					OpCode opcode;
 					int field1, field2, field3, find_field;
@@ -121,6 +118,7 @@ Instruction *childI(Instruction *parent){
 					parent->field2 = 0;
 					parent->field3 = 0;
 					// FIND child_2
+					child_1=childI(child);
 					child_2 = childI(parent);
 					// RESET parent
 					parent->opcode = opcode;
