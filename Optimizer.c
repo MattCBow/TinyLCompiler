@@ -68,7 +68,7 @@ Instruction *childI(Instruction *parent){
 			case LOADI: 		// 1 Constant => 1 Register
 				if(parent->field1==child->field2 || parent->field2==child->field2){
 					//SET child_1
-					Instruction *child_1, *child_2;
+					Instruction *child_1;//, *child_2;
 					child_1=childI(child);/*
 					// HOLD parent
 					OpCode opcode;
@@ -96,7 +96,7 @@ Instruction *childI(Instruction *parent){
 					child_1->next=child_2;
 					// return
 					*/
-					child->next= child_1;
+					child->next = child_1;
 					return(child);
 				}
 				break;
@@ -107,7 +107,7 @@ Instruction *childI(Instruction *parent){
 			case DIV:
 				if(parent->field1==child->field3 || parent->field2==child->field3){
 					// SET child_1
-					Instruction *child_1, *child_2;
+					Instruction *child_1;//, *child_2;
 					child_1=childI(child);/*
 					// HOLD parent
 					OpCode opcode;
