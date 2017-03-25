@@ -83,8 +83,13 @@ Instruction *childI(Instruction *parent){
 					parent->field3 = 0;
 					// FIND child_2
 					//printf('%d',find_field);
-					printf(parent->field1);
+					printf("-------\n");
+					PrintInstruction(stdout,parent);
+					printf("-------\n");
 					child_1=childI(child);
+					printf("-------\n");
+					PrintInstruction(stdout,parent);
+					printf("-------\n");
 					//printf('%p',find_field);
 					//child_2 = childI(parent);
 					//printf('%d',find_field);
