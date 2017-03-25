@@ -29,7 +29,7 @@ Instruction *childI(Instruction *parent){
 			switch (child->opcode) {
 			case STOREAI:		// 1 Register => 1 Variable
 				if(parent->field2==child->field3){
-					child->next = childI(child);
+					child->next = NULL;//childI(child);
 					return(child);
 				}
 				break;
