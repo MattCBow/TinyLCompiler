@@ -15,7 +15,7 @@
 
 Instruction *childI(Instruction *parent){
 	PrintInstruction(stdout,parent);
-	Instruction *child;
+	Instruction *child, *child_1, *child_2;
 	for(child=parent; child; child=child->prev){
 		switch (parent->opcode) {
 		case LOADI:				// 1 Constant => 1 Register
@@ -42,7 +42,7 @@ Instruction *childI(Instruction *parent){
 			switch (child->opcode) {
 			case LOADI: 		// 1 Constant => 1 Register
 				if(parent->field1==child->field2){
-					child->next=childI(child);
+					child_1=childI(child);
 					return(child);
 				}
 				break;
@@ -52,7 +52,7 @@ Instruction *childI(Instruction *parent){
 			case MUL:
 			case DIV:
 				if(parent->field1==child->field3){
-					child->next=childI(child);
+					child_1=childI(child);
 					return(child);
 				}
 				break;
@@ -68,7 +68,6 @@ Instruction *childI(Instruction *parent){
 			case LOADI: 		// 1 Constant => 1 Register
 				if(parent->field1==child->field2 || parent->field2==child->field2){
 					// SET child_1
-					Instruction *child_1, *child_2;
 					child_1=childI(child);
 					// HOLD parent
 					OpCode opcode;
@@ -95,7 +94,7 @@ Instruction *childI(Instruction *parent){
 					//for(child=child_1; child_1->next; child_1=child_1->next);
 					//child_1->next=child_2;
 					// return
-					child->next = child_1;
+					//child->next = child_1;
 					return(child);
 				}
 				break;
@@ -106,7 +105,6 @@ Instruction *childI(Instruction *parent){
 			case DIV:
 				if(parent->field1==child->field3 || parent->field2==child->field3){
 					// SET child_1
-					Instruction *child_1, *child_2;
 					child_1=childI(child);
 					// HOLD parent
 					OpCode opcode;
@@ -133,7 +131,6 @@ Instruction *childI(Instruction *parent){
 					//for(child=child_1; child_1->next; child_1=child_1->next);
 					//child_1->next=child_2;
 					// return
-					child->next = child_1;
 					return(child);
 				}
 				break;
@@ -155,14 +152,15 @@ int main()
 		WARNING("No instructions\n");
 		exit(EXIT_FAILURE);
 	}
-
+	if (head) PrintInstructionList(stdout, head);
+	printf("\n\n");
+	
 	Instruction *out;
 	for(out=head; out->opcode!=OUTPUTAI; out=out->next);
 	out->next = childI(out);
 	//for(head=out;out->next;out=out->next) out->next->prev = out;
+	if (head) PrintInstructionList(stdout, head);
 	printf("\n\n");
-	if (out)
-		PrintInstructionList(stdout, head);
 
 	return EXIT_SUCCESS;
 }
