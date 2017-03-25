@@ -82,7 +82,6 @@ Instruction *childI(Instruction *parent){
 					parent->field2 = 0;
 					parent->field3 = 0;
 					// FIND child_2
-					//printf('%d',find_field);
 					printf("1. -------\n");
 					PrintInstruction(stdout,parent);
 					child_1=childI(child);
@@ -91,7 +90,6 @@ Instruction *childI(Instruction *parent){
 					child_2 = childI(parent);
 					printf("3. -------\n");
 					PrintInstruction(stdout,parent);
-					//printf('%d',find_field);
 					// RESET parent
 					parent->opcode = opcode;
 					parent->field1 = field1;
@@ -126,11 +124,14 @@ Instruction *childI(Instruction *parent){
 					parent->field2 = 0;
 					parent->field3 = 0;
 					// FIND child_2
-					//printf('%d',find_field);
+					printf("1. -------\n");
+					PrintInstruction(stdout,parent);
 					child_1=childI(child);
-					//printf('%p',find_field);
-					//child_2 = childI(parent);
-					//printf('%d',find_field);
+					printf("2. -------\n");
+					PrintInstruction(stdout,parent);
+					child_2 = childI(parent);
+					printf("3. -------\n");
+					PrintInstruction(stdout,parent);
 					// RESET parent
 					parent->opcode = opcode;
 					parent->field1 = field1;
