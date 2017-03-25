@@ -68,6 +68,7 @@ Instruction *childI(Instruction *parent){
 			case LOADI: 		// 1 Constant => 1 Register
 				if(parent->field1==child->field2 || parent->field2==child->field2){
 					// HOLD parent
+					printf("1B. -------\n");
 					OpCode opcode;
 					int field1, field2, field3, find_field;
 					opcode = parent->opcode;
@@ -82,13 +83,13 @@ Instruction *childI(Instruction *parent){
 					parent->field2 = 0;
 					parent->field3 = 0;
 					// FIND child_2
-					printf("1B. -------\n");
-					PrintInstruction(stdout,parent);
-					child_1=childI(child);
 					printf("2B. -------\n");
 					PrintInstruction(stdout,parent);
-					child_2 = childI(parent);
+					child_1=childI(child);
 					printf("3B. -------\n");
+					PrintInstruction(stdout,parent);
+					child_2 = childI(parent);
+					printf("4B. -------\n");
 					PrintInstruction(stdout,parent);
 					// RESET parent
 					parent->opcode = opcode;
