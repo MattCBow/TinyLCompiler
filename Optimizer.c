@@ -17,7 +17,7 @@ typedef enum {END, NEXT, SPLIT} Match;
 
 Instruction *childI(Instruction *parent){
 	PrintInstruction(stdout,parent);
-	Instruction *child;
+	Instruction *child, *child_1, *child_2;
 	for(child=parent; child; child=child->prev){
 
 		Match match;
@@ -83,10 +83,11 @@ Instruction *childI(Instruction *parent){
 		case END:
 			return(NULL);
 		case NEXT:
-			child->next = childI(child);
+			child_1 = childI(child);
+			child->next = child_1;
 			return(child);
-		case SPLIT
-			Instruction *child_1;//, *child_2;
+		case SPLIT:
+			// SET child_1
 			child_1=childI(child);
 			// HOLD parent
 			OpCode opcode;
