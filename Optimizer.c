@@ -34,7 +34,7 @@ Instruction *childI(Instruction *parent){
 		case OUTPUTAI:		// 1 Variable => 1 Constant
 			switch (child->opcode) {
 			case STOREAI:		// 1 Register => 1 Variable
-				if(parent->field2==child->field3) match=END;
+				if(parent->field2==child->field3) match=NEXT;
 				break;
 			default:
 				break;
