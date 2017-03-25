@@ -155,13 +155,13 @@ int main()
 
 	Instruction *out;
 	for(out=head; out->opcode!=OUTPUTAI; out=out->next){
-		printf("%d\n",out->opcode);
+		PrintInstruction(stdout, out);
 	};
 	out->next = childI(out);
 	//for(head=out;out->next;out=out->next) out->next->prev = out;
 
-	//if (out)
-		//PrintInstructionList(stdout, head);
+	if (out)
+		PrintInstructionList(stdout, head);
 
 	return EXIT_SUCCESS;
 }
