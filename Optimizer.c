@@ -34,6 +34,7 @@ Instruction *childI(Instruction *parent){
 		case OUTPUTAI:		// 1 Variable => 1 Constant
 			switch (child->opcode) {
 			case STOREAI:		// 1 Register => 1 Variable
+				printf('dick');
 				if(parent->field2==child->field3) match=NEXT;
 				break;
 			default:
@@ -83,6 +84,7 @@ Instruction *childI(Instruction *parent){
 		case END:
 			return(NULL);
 		case NEXT:
+			printf('dunce');
 			child_1 = childI(child);
 			child->next = child_1;
 			return(child);
