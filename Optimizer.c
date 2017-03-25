@@ -14,7 +14,7 @@
 #include "Utils.h"
 
 Instruction *childI(Instruction *parent){
-	printf("%d\n",parent->opcode);
+	PrintInstruction(parent);
 	Instruction *child;
 	for(child=parent; child; child=child->prev){
 		switch (parent->opcode) {
@@ -154,9 +154,7 @@ int main()
 	}
 
 	Instruction *out;
-	for(out=head; out->opcode!=OUTPUTAI; out=out->next){
-		PrintInstruction(stdout, out);
-	};
+	for(out=head; out->opcode!=OUTPUTAI; out=out->next);
 	out->next = childI(out);
 	//for(head=out;out->next;out=out->next) out->next->prev = out;
 
