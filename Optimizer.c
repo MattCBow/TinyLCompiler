@@ -17,8 +17,6 @@ Instruction *childI(Instruction *parent){
 	PrintInstruction(stdout,parent);
 	Instruction *child;
 	for(child=parent; child; child=child->prev){
-		bool end, next, split;
-		end = next = split = false;
 		switch (parent->opcode) {
 		case LOADI:				// 1 Constant => 1 Register
 			switch (child->opcode){
@@ -141,15 +139,6 @@ Instruction *childI(Instruction *parent){
 				break;
 			}
 			break;
-			if(end){
-				return(NULL);
-			}
-			if(next){
-				child->next = childI(child);
-				return(child);
-			}
-			if(split){
-
 			}
 		}
 	}
