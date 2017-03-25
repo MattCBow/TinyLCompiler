@@ -85,7 +85,7 @@ Instruction *childI(Instruction *parent){
 					parent->field2 = 0;
 					parent->field3 = 0;
 					// FIND child_2
-					//child_2 = childI(parent);
+					child_2 = childI(parent);
 					// RESET parent
 					parent->opcode = opcode;
 					parent->field1 = field1;
