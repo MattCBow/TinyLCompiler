@@ -87,7 +87,7 @@ Instruction *childI(Instruction *parent){
 			return(child);
 		case SPLIT:
 			// SET child_1
-			Instruction *child_1, *child_2;
+			Instruction *child_1;//, *child_2;
 			child_1=childI(child);
 			// HOLD parent
 			OpCode opcode;
