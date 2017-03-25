@@ -13,20 +13,17 @@
 #include "InstrUtils.h"
 #include "Utils.h"
 
-typedef enum {END, NEXT, SPLIT} Match;
-
 Instruction *childI(Instruction *parent){
 	PrintInstruction(stdout,parent);
-	Instruction *child, *child_1, *child_2;
+	Instruction *child;
 	for(child=parent; child; child=child->prev){
-
-		Match match;
-
+		bool end, next, split;
+		end = next = split = false;
 		switch (parent->opcode) {
 		case LOADI:				// 1 Constant => 1 Register
 			switch (child->opcode){
 			default:
-				if(parent->opcode==child->opcode) match = END;
+				return(NULL);
 				break;
 			}
 			break;
@@ -34,8 +31,10 @@ Instruction *childI(Instruction *parent){
 		case OUTPUTAI:		// 1 Variable => 1 Constant
 			switch (child->opcode) {
 			case STOREAI:		// 1 Register => 1 Variable
-				printf('dick');
-				if(parent->field2==child->field3) match=NEXT;
+				if(parent->field2==child->field3){
+					child->next=childI(child);
+					return(child);
+				}
 				break;
 			default:
 				break;
@@ -44,14 +43,20 @@ Instruction *childI(Instruction *parent){
 		case STOREAI:			// 1 Register => 1 Variable
 			switch (child->opcode) {
 			case LOADI: 		// 1 Constant => 1 Register
-				if(parent->field1==child->field2) match=NEXT;
+				if(parent->field1==child->field2){
+					child->next=childI(child);
+					return(child);
+				}
 				break;
 			case LOADAI: 		// 1 Variable => 1 Register
 			case ADD:				// 2 Registers => 1 Register
 			case SUB:
 			case MUL:
 			case DIV:
-				if(parent->field1==child->field3) match=NEXT;
+				if(parent->field1==child->field3){
+					child->next=childI(child);
+					return(child);
+				}
 				break;
 			default:
 				break;
@@ -63,61 +68,89 @@ Instruction *childI(Instruction *parent){
 		case DIV:					// 2 Registers => 1 Register
 			switch (child->opcode) {
 			case LOADI: 		// 1 Constant => 1 Register
-				if(parent->field1==child->field2) match=SPLIT;
-				if(parent->field2==child->field2) match=SPLIT;
+				if(parent->field1==child->field2 || parent->field2==child->field2){
+					//SET child_1
+					Instruction *child_1, *child_2;
+					child_1=childI(child);
+					// HOLD parent
+					OpCode opcode;
+					int field1, field2, field3, find_field;
+					opcode = parent->opcode;
+					field1 = parent->field1;
+					field2 = parent->field2;
+					field3 = parent->field3;
+					if(parent->field1==child->field2) find_field = field2;
+					if(parent->field2==child->field2) find_field = field1;
+					// REPLACE parent
+					parent->opcode = STOREAI;
+					parent->field1 = find_field;
+					parent->field2 = 0;
+					parent->field3 = 0;
+					// FIND child_2
+					child_2 = childI(parent);
+					// RESET parent
+					parent->opcode = opcode;
+					parent->field1 = field1;
+					parent->field2 = field2;
+					parent->field3 = field3;
+					// Connect child_1 and child_2
+					for(child=child_1; child_1->next; child_1=child_1->next);
+					child_1->next=child_2;
+					// return
+					return(child);*/ child->next=childI(child); return(child);
+				}
 				break;
 			case LOADAI: 		// 1 Variable => 1 Register
 			case ADD:				// 2 Registers => 1 Register
 			case SUB:
 			case MUL:
 			case DIV:
-				if(parent->field1==child->field3) match=SPLIT;
-				if(parent->field2==child->field3)	match=SPLIT;
+				if(parent->field1==child->field3 || parent->field2==child->field3){ /*
+					// SET child_1
+					Instruction *child_1, *child_2;
+					child_1=childI(child);
+					// HOLD parent
+					OpCode opcode;
+					int field1, field2, field3, find_field;
+					opcode = parent->opcode;
+					field1 = parent->field1;
+					field2 = parent->field2;
+					field3 = parent->field3;
+					if(parent->field1==child->field2) find_field = field2;
+					if(parent->field2==child->field2) find_field = field1;
+					// REPLACE parent
+					parent->opcode = STOREAI;
+					parent->field1 = find_field;
+					parent->field2 = 0;
+					parent->field3 = 0;
+					// FIND child_2
+					child_2 = childI(parent);
+					// RESET parent
+					parent->opcode = opcode;
+					parent->field1 = field1;
+					parent->field2 = field2;
+					parent->field3 = field3;
+					// Connect child_1 and child_2
+					for(child=child_1; child_1->next; child_1=child_1->next);
+					child_1->next=child_2;
+					// return
+					return(child);*/ child->next=childI(child); return(child);
+				}
 				break;
 			default:
 				break;
 			}
 			break;
-		}
+			if(end){
+				return(NULL);
+			}
+			if(next){
+				child->next = childI(child);
+				return(child);
+			}
+			if(split){
 
-		switch(match){
-		case END:
-			return(NULL);
-		case NEXT:
-			printf('dunce');
-			child_1 = childI(child);
-			child->next = child_1;
-			return(child);
-		case SPLIT:
-			// SET child_1
-			child_1=childI(child);
-			// HOLD parent
-			OpCode opcode;
-			int field1, field2, field3, find_field;
-			opcode = parent->opcode;
-			field1 = parent->field1;
-			field2 = parent->field2;
-			field3 = parent->field3;
-			if(parent->field1==child->field2) find_field = field2;
-			if(parent->field2==child->field2) find_field = field1;
-			// REPLACE parent
-			parent->opcode = STOREAI;
-			parent->field1 = find_field;
-			parent->field2 = 0;
-			parent->field3 = 0;
-			// FIND child_2
-			//child_2 = childI(parent);
-			// RESET parent
-			parent->opcode = opcode;
-			parent->field1 = field1;
-			parent->field2 = field2;
-			parent->field3 = field3;
-			// Connect child_1 and child_2
-			//for(child=child_1; child_1->next; child_1=child_1->next);
-			//child_1->next=child_2;
-			// return
-			child->next=child_1;
-			return(child);
+			}
 		}
 	}
 	return(child);
