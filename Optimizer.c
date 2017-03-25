@@ -51,7 +51,7 @@ Instruction *childI(Instruction *parent){
 			case MUL:
 			case DIV:
 				if(parent->field1==child->field3){
-					child->next=NULL;//childI(child);
+					child->next=childI(child);
 					return(child);
 				}
 				break;
@@ -65,7 +65,7 @@ Instruction *childI(Instruction *parent){
 		case DIV:					// 2 Registers => 1 Register
 			switch (child->opcode) {
 			case LOADI: 		// 1 Constant => 1 Register
-				if(parent->field1==child->field2 || parent->field2==child->field2){
+				if(parent->field1==child->field2 || parent->field2==child->field2){/*
 					// SET child_1
 					Instruction *child_1, *child_2;
 					child_1=childI(child);
@@ -94,7 +94,7 @@ Instruction *childI(Instruction *parent){
 					for(child=child_1; child_1->next; child_1=child_1->next);
 					child_1->next=child_2;
 					// return
-					return(child);
+					return(child);*/ child->next=childI(child); return(child);
 				}
 				break;
 			case LOADAI: 		// 1 Variable => 1 Register
@@ -102,7 +102,7 @@ Instruction *childI(Instruction *parent){
 			case SUB:
 			case MUL:
 			case DIV:
-				if(parent->field1==child->field3 || parent->field2==child->field3){
+				if(parent->field1==child->field3 || parent->field2==child->field3){ /*
 					// SET child_1
 					Instruction *child_1, *child_2;
 					child_1=childI(child);
@@ -131,7 +131,7 @@ Instruction *childI(Instruction *parent){
 					for(child=child_1; child_1->next; child_1=child_1->next);
 					child_1->next=child_2;
 					// return
-					return(child);
+					return(child);*/ child->next=childI(child); return(child);
 				}
 				break;
 			default:
