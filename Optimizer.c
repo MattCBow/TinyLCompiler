@@ -69,7 +69,7 @@ Instruction *childI(Instruction *parent){
 				if(parent->field1==child->field2 || parent->field2==child->field2){
 					//SET child_1
 					Instruction *child_1, *child_2;
-					child_1=childI(child);
+					child_1=childI(child);/*
 					// HOLD parent
 					OpCode opcode;
 					int field1, field2, field3, find_field;
@@ -95,7 +95,9 @@ Instruction *childI(Instruction *parent){
 					for(child=child_1; child_1->next; child_1=child_1->next);
 					child_1->next=child_2;
 					// return
-					return(child);*/ child->next=childI(child); return(child);
+					*/
+					child->next= child_1;
+					return(child);
 				}
 				break;
 			case LOADAI: 		// 1 Variable => 1 Register
@@ -103,10 +105,10 @@ Instruction *childI(Instruction *parent){
 			case SUB:
 			case MUL:
 			case DIV:
-				if(parent->field1==child->field3 || parent->field2==child->field3){ /*
+				if(parent->field1==child->field3 || parent->field2==child->field3){
 					// SET child_1
 					Instruction *child_1, *child_2;
-					child_1=childI(child);
+					child_1=childI(child);/*
 					// HOLD parent
 					OpCode opcode;
 					int field1, field2, field3, find_field;
@@ -132,7 +134,9 @@ Instruction *childI(Instruction *parent){
 					for(child=child_1; child_1->next; child_1=child_1->next);
 					child_1->next=child_2;
 					// return
-					return(child);*/ child->next=childI(child); return(child);
+					*/
+					child->next = child_1;
+					return(child);
 				}
 				break;
 			default:
