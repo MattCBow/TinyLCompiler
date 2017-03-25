@@ -141,7 +141,6 @@ Instruction *childI(Instruction *parent){
 				break;
 			}
 			break;
-			}
 		}
 	}
 	return(child);
