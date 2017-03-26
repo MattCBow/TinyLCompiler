@@ -84,7 +84,7 @@ Instruction *childI(Instruction *parent){
 					if(parent->field1==child->field2) parent->field1 = field2;
 					if(parent->field2==child->field2) parent->field1 = field1;
 					// FIND child_2
-					Instruction *child_1, *child_2, *head;
+					Instruction *child_1, *child_2;
 					child_1=childI(child);
 					child_2 = childI(parent);
 					// RESET parent
@@ -131,8 +131,25 @@ Instruction *childI(Instruction *parent){
 					// Merge child_1 and child_2
 					parent = child;
 					parent->next = child_1;
-					while(child_1)child_1=child_1->next;
-					while(child_2)child_2=child_2->next;
+					while(child_1 && child_2){
+						if(child_1==child_2){
+							child_2=child_2->next;
+						}
+						else if (child_1>child_2){
+							if(child>child_1){
+								child->next = child_1;
+								child = child_1;
+							}
+							child_1=child_1->next;
+						}
+						else if (child_2>child_1){
+							if(child>child_2){
+								child->next = child_2;
+								child = child_2;
+							}
+							child_2=child_2->next;
+						}
+					}
 					return(parent);
 				}
 				break;
