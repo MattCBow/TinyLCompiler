@@ -109,7 +109,7 @@ Instruction *childI(Instruction *parent){
 			parent->field3 = field3;
 			// Merge child_1 and child_2
 			parent = child;
-			while(child){
+			while(child != NULL){
 				child->next=child_1;
 				child_1 = child_1->next;
 				child=child->next;
