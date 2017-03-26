@@ -130,7 +130,9 @@ int main()
 	childTree(cur);
 	printf("\n\n");
 	for(cur=head;cur!=NULL;cur = cur->next){
-		if(cur->critical=='Y') PrintInstruction(stdout, cur);
+		if(cur->critical=='Y'){
+			PrintInstruction(stdout, cur);
+		}
 	}
 
 	return EXIT_SUCCESS;
