@@ -14,8 +14,8 @@
 #include "Utils.h"
 
 Instruction *childI(Instruction *parent){
-	//printf("%p ---> ", (void *) parent);
-	//PrintInstruction(stdout,parent);
+	printf("%p ---> ", (void *) parent);
+	PrintInstruction(stdout,parent);
 	Instruction *child;
 	int source;
 	for(child=parent; child; child=child->prev){
@@ -32,7 +32,13 @@ Instruction *childI(Instruction *parent){
 		case OUTPUTAI:		// 1 Variable => 1 Constant
 			switch (child->opcode) {
 			case STOREAI:		// 1 Register => 1 Variable
-				if(parent->field2==child->field3) source = 1;
+				if(parent->field2==child->field3){
+					parent = child;
+					parent->next=childI(child);
+					printf("%p SINGLE ", (void *) child);
+					PrintInstruction(stdout, child);
+					return(parent);
+				}
 				break;
 			default:
 				break;
