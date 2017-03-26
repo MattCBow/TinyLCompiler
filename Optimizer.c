@@ -17,6 +17,8 @@ Instruction *childI(Instruction *parent){
 	printf("%p ---> ", (void *) parent);
 	PrintInstruction(stdout,parent);
 	Instruction *child;
+	int source;
+	source = -1;
 	for(child=parent; child; child=child->prev){
 		switch (parent->opcode) {
 		case LOADI:				// 1 Constant => 1 Register
@@ -71,50 +73,7 @@ Instruction *childI(Instruction *parent){
 			switch (child->opcode) {
 			case LOADI: 		// 1 Constant => 1 Register
 				if(parent->field1==child->field2 || parent->field2==child->field2){
-					// HOLD parent
-					OpCode opcode;
-					int field1, field2, field3;
-					opcode = parent->opcode;
-					field3 = parent->field3;
-					field2 = parent->field2;
-					field1 = parent->field1;
-					parent->opcode = STOREAI;
-					parent->field3 = 0;
-					parent->field2 = 0;
-					if(parent->field1==child->field2) parent->field1 = field2;
-					if(parent->field2==child->field2) parent->field1 = field1;
-					// FIND child_2
-					Instruction *child_1, *child_2;
-					child_1=childI(child);
-					child_2 = childI(parent);
-					// RESET parent
-					parent->opcode = opcode;
-					parent->field1 = field1;
-					parent->field2 = field2;
-					parent->field3 = field3;
-					// Merge child_1 and child_2
-					parent = child;
-					parent->next = child_1;
-					while(child_1 && child_2){
-						if(child_1==child_2){
-							child_2=child_2->next;
-						}
-						else if (child_1>child_2){
-							if(child>child_1){
-								child->next = child_1;
-								child = child_1;
-							}
-							child_1=child_1->next;
-						}
-						else if (child_2>child_1){
-							if(child>child_2){
-								child->next = child_2;
-								child = child_2;
-							}
-							child_2=child_2->next;
-						}
-					}
-					return(parent);
+					source=2;
 				}
 				break;
 			case LOADAI: 		// 1 Variable => 1 Register
@@ -123,56 +82,63 @@ Instruction *childI(Instruction *parent){
 			case MUL:
 			case DIV:
 				if(parent->field1==child->field3 || parent->field2==child->field3){
-					// HOLD parent
-					OpCode opcode;
-					int field1, field2, field3;
-					opcode = parent->opcode;
-					field3 = parent->field3;
-					field2 = parent->field2;
-					field1 = parent->field1;
-					parent->opcode = STOREAI;
-					parent->field3 = 0;
-					parent->field2 = 0;
-					if(parent->field1==child->field2) parent->field1 = field2;
-					if(parent->field2==child->field2) parent->field1 = field1;
-					// FIND child_2
-					Instruction *child_1, *child_2;
-					child_1=childI(child);
-					child_2 = childI(parent);
-					// RESET parent
-					parent->opcode = opcode;
-					parent->field1 = field1;
-					parent->field2 = field2;
-					parent->field3 = field3;
-					// Merge child_1 and child_2
-					parent = child;
-					parent->next = child_1;
-					while(child_1 && child_2){
-						if(child_1==child_2){
-							child_2=child_2->next;
-						}
-						else if (child_1>child_2){
-							if(child>child_1){
-								child->next = child_1;
-								child = child_1;
-							}
-							child_1=child_1->next;
-						}
-						else if (child_2>child_1){
-							if(child>child_2){
-								child->next = child_2;
-								child = child_2;
-							}
-							child_2=child_2->next;
-						}
-					}
-					return(parent);
+					source=2;
 				}
 				break;
 			default:
 				break;
 			}
 			break;
+
+		}
+		if(source == 1){
+
+		}
+		if(source == 2){
+			// HOLD parent
+			OpCode opcode;
+			int field1, field2, field3;
+			opcode = parent->opcode;
+			field3 = parent->field3;
+			field2 = parent->field2;
+			field1 = parent->field1;
+			parent->opcode = STOREAI;
+			parent->field3 = 0;
+			parent->field2 = 0;
+			if(parent->field1==child->field2) parent->field1 = field2;
+			if(parent->field2==child->field2) parent->field1 = field1;
+			// FIND child_2
+			Instruction *child_1, *child_2;
+			child_1=childI(child);
+			child_2 = childI(parent);
+			// RESET parent
+			parent->opcode = opcode;
+			parent->field1 = field1;
+			parent->field2 = field2;
+			parent->field3 = field3;
+			// Merge child_1 and child_2
+			parent = child;
+			parent->next = child_1;
+			while(child_1 && child_2){
+				if(child_1==child_2){
+					child_2=child_2->next;
+				}
+				else if (child_1>child_2){
+					if(child>child_1){
+						child->next = child_1;
+						child = child_1;
+					}
+					child_1=child_1->next;
+				}
+				else if (child_2>child_1){
+					if(child>child_2){
+						child->next = child_2;
+						child = child_2;
+					}
+					child_2=child_2->next;
+				}
+			}
+			return(parent);
 		}
 	}
 	return(child);
