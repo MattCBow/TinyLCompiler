@@ -70,7 +70,7 @@ Instruction *childI(Instruction *parent){
 				if(parent->field1==child->field2 || parent->field2==child->field2){
 					// HOLD parent
 					OpCode opcode;
-					int field1, field2, field3, find_field;
+					int field1, field2, field3;
 					opcode = parent->opcode;
 					field3 = parent->field3;
 					field2 = parent->field2;
@@ -104,7 +104,7 @@ Instruction *childI(Instruction *parent){
 				if(parent->field1==child->field3 || parent->field2==child->field3){
 					// HOLD parent
 					OpCode opcode;
-					int field1, field2, field3, find_field;
+					int field1, field2, field3;
 					opcode = parent->opcode;
 					field3 = parent->field3;
 					field2 = parent->field2;
