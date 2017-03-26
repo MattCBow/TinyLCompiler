@@ -129,9 +129,9 @@ int main()
 		cur->critical='N';
 	childTree(cur);
 	printf("\n\n");
-	for(cur=head;cur!=NULL;cur = cur->next)
+	for(cur=head;cur!=NULL;cur = cur->next){
 		if(cur->critical=='Y') PrintInstruction(stdout, cur);
-
+	}
 
 	return EXIT_SUCCESS;
 }
