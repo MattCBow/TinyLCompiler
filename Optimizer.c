@@ -97,7 +97,7 @@ Instruction *childI(Instruction *parent){
 					//for(child=child_1; child_1->next; child_1=child_1->next);
 					//child_1->next=child_2;
 					// return
-					//child->next = child_1;
+					child->next = child_1;
 					return(child);
 				}
 				break;
@@ -131,7 +131,7 @@ Instruction *childI(Instruction *parent){
 					//for(child=child_1; child_1->next; child_1=child_1->next);
 					//child_1->next=child_2;
 					// return
-					//child->next = child_1;
+					child->next = child_1;
 					return(child);
 				}
 				break;
