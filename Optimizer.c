@@ -171,7 +171,7 @@ int main()
 	if (head) PrintInstructionList(stdout, head);
 	printf("\n\n");
 
-	out->next = childI(out);
+	//out->next = childI(out);
 	//for(head=out;out->next;out=out->next) out->next->prev = out;
 
 
