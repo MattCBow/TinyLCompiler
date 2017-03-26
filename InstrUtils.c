@@ -72,7 +72,7 @@ void PrintInstructionList(FILE * outfile, Instruction * instr)
 
 	Instruction *cur;
 	for(cur=instr;cur!=NULL;cur = cur->next){
-		printf("%p --->", (void *) &cur);
+		printf("%p --->", (void *) cur);
 		PrintInstruction(outfile, cur);
 	}
 
