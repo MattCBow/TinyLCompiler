@@ -14,7 +14,7 @@
 #include "Utils.h"
 
 Instruction *childI(Instruction *parent){
-	//PrintInstruction(stdout,parent);
+	PrintInstruction(stdout,parent);
 	Instruction *child, *child_1, *child_2;
 	for(child=parent; child; child=child->prev){
 		switch (parent->opcode) {
@@ -132,7 +132,7 @@ Instruction *childI(Instruction *parent){
 					///printf("3A. -------\n");
 					//PrintInstruction(stdout,parent);
 					child_2 = childI(parent);
-					printf("4A. -------\n");
+					//printf("4A. -------\n");
 					//PrintInstruction(stdout,parent);
 					// RESET parent
 					parent->opcode = opcode;
