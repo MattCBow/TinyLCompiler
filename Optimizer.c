@@ -35,7 +35,7 @@ Instruction *childI(Instruction *parent){
 					parent = child;
 					child=child_1;
 					parent->next=child;
-					return(child);
+					return(parent);
 				}
 				break;
 			default:
@@ -50,7 +50,7 @@ Instruction *childI(Instruction *parent){
 					parent = child;
 					child=child_1;
 					parent->next=child;
-					return(child);
+					return(parent);
 				}
 				break;
 			case LOADAI: 		// 1 Variable => 1 Register
@@ -63,7 +63,7 @@ Instruction *childI(Instruction *parent){
 					parent = child;
 					child=child_1;
 					parent->next=child;
-					return(child);
+					return(parent);
 				}
 				break;
 			default:
@@ -102,7 +102,7 @@ Instruction *childI(Instruction *parent){
 					//child_1->next=child_2;
 					// return
 					parent = child;
-					while(child){
+					while(child_1 || child){
 						if(!child_1 && !child_2){
 							child=child->next;
 						}
@@ -130,8 +130,7 @@ Instruction *childI(Instruction *parent){
 							child_1->next = child_1;
 						}
 					}
-					parent->next=child;
-					return(child);
+					return(parent);
 				}
 				break;
 			case LOADAI: 		// 1 Variable => 1 Register
@@ -193,8 +192,7 @@ Instruction *childI(Instruction *parent){
 							child_1->next = child_1;
 						}
 					}
-					parent->next=child;
-					return(child);
+					return(parent);
 				}
 				break;
 			default:
