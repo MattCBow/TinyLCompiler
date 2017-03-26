@@ -114,7 +114,7 @@ Instruction *childI(Instruction *parent){
 			parent = child;
 			child->next=child_1;
 			while(child_1->next!=NULL){
-				parent=child_1->next
+				parent=child_1->next;
 				printf("%p ----> ", (void *) parent);
 				PrintInstruction(stdout, parent);
 				child_1=child_1->next;
