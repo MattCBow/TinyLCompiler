@@ -143,11 +143,11 @@ int main()
 	out = childI(out);
 	head->next = out;
 	printf("\n\n");
-
+	/*
 	for(out = head; out; out=out->next){
 		printf("%p ---> ", (void *) out);
 		PrintInstruction(stdout,out);
-	}
+	}*/
 
 	return EXIT_SUCCESS;
 }
