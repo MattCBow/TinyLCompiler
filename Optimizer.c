@@ -164,6 +164,7 @@ int main()
 	out = childI(out);
 	head->next = out;
 	printf("\n\n");
+	out = head;
 
 	int i;
 	for(i=0;i<10;i++){
