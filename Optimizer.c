@@ -108,14 +108,14 @@ Instruction *childI(Instruction *parent){
 			parent->field2 = field2;
 			parent->field3 = field3;
 			// Merge child_1 and child_2
-			parent = child;
+			parent = child;/*
 			while(child!=NULL){
 				printf("%p MERGE ", (void *) child);
 				PrintInstruction(stdout,parent);
 				child->next=child_1;
 				child=child->next;
 				child_1=child_1->next;
-			}
+			}*/
 			return(parent);
 		}
 	}
