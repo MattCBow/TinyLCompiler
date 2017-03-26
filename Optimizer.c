@@ -140,19 +140,10 @@ int main()
 	for(cur=head; cur->opcode!=OUTPUTAI; cur=cur->next)
 		cur->critical='N';
 	cur->next = childI(cur);
-	for(cur=head;cur!=NULL;cur = cur->next){
-		if(cur->critical=='Y')PrintInstruction(outfile, cur);
-	}
-
-	tail->next = childI(tail);
 	printf("\n\n");
-
-	/*
-	while(tail){
-		printf("%p ---> ", (void *) tail);
-		PrintInstruction(stdout,tail);
-		tail = tail->next;
-	}*/
+	for(cur=head;cur!=NULL;cur = cur->next)
+		if(cur->critical=='Y')PrintInstruction(outfile, cur);
+		
 
 	return EXIT_SUCCESS;
 }
