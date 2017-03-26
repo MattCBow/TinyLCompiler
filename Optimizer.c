@@ -117,6 +117,10 @@ Instruction *childI(Instruction *parent){
 					child->next=child_1;
 					child_1=child_1->next;
 				}
+				else if(child_2){
+					child->next=child_2;
+					child_2=child_2->next;
+				}
 				child=child->next;
 				/*
 				if(child_1){
