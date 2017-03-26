@@ -80,11 +80,11 @@ Instruction *childI(Instruction *parent){
 		if(source == 0){
 			return(NULL);
 		}
-		if(source == 1){
+		if(source == 1 || source == 2){
 			child->next=childI(child);
 			return(child);
 		}
-		if(source == 2){
+		if(source == 4){
 			// HOLD parent
 			OpCode opcode;
 			int field1, field2, field3;
