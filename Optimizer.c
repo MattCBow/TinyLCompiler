@@ -165,9 +165,10 @@ int main()
 	head->next = out;
 	printf("\n\n");
 
-	for(out=head;out;out=out->next){
+	for(int i=0;i<10;i++){
 		printf("%p ---> ", (void *) out);
 		PrintInstruction(stdout,out);
+		out=out->out;
 	}
 	//for(head=out;out->next;out=out->next) out->next->prev = out;
 
