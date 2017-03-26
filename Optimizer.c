@@ -111,6 +111,8 @@ Instruction *childI(Instruction *parent){
 			parent = child;
 			parent->next = child_1;
 			while(child_1 && child_2){
+				printf("%p MERGE ", (void *) parent);
+				PrintInstruction(stdout,parent);
 				if(child_1==child_2){
 					child_2=child_2->next;
 				}
