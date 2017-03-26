@@ -31,10 +31,8 @@ Instruction *childI(Instruction *parent){
 			switch (child->opcode) {
 			case STOREAI:		// 1 Register => 1 Variable
 				if(parent->field2==child->field3){
-					child_1 = childI(child);
 					parent = child;
-					child=child_1;
-					parent->next=child;
+					parent->next=childI(child);
 					return(parent);
 				}
 				break;
@@ -46,10 +44,8 @@ Instruction *childI(Instruction *parent){
 			switch (child->opcode) {
 			case LOADI: 		// 1 Constant => 1 Register
 				if(parent->field1==child->field2){
-					child_1 = childI(child);
 					parent = child;
-					child=child_1;
-					parent->next=child;
+					parent->next=childI(child);
 					return(parent);
 				}
 				break;
@@ -59,10 +55,8 @@ Instruction *childI(Instruction *parent){
 			case MUL:
 			case DIV:
 				if(parent->field1==child->field3){
-					child_1 = childI(child);
 					parent = child;
-					child=child_1;
-					parent->next=child;
+					parent->next=childI(child);
 					return(parent);
 				}
 				break;
@@ -91,7 +85,7 @@ Instruction *childI(Instruction *parent){
 					if(parent->field2==child->field2) parent->field1 = field1;
 					// FIND child_2
 					child_1=childI(child);
-					//child_2 = childI(parent);
+					child_2 = childI(parent);
 					// RESET parent
 					parent->opcode = opcode;
 					parent->field1 = field1;
@@ -153,7 +147,7 @@ Instruction *childI(Instruction *parent){
 					if(parent->field2==child->field2) parent->field1 = field1;
 					// FIND child_2
 					child_1=childI(child);
-					  child_2 = childI(parent);
+					 child_2 = childI(parent);
 					// RESET parent
 					parent->opcode = opcode;
 					parent->field1 = field1;
