@@ -23,7 +23,7 @@ Instruction *childI(Instruction *parent){
 			switch (child->opcode){
 			default:
 				child_1 = NULL;
-				child->next=child_1
+				child->next=child_1;
 				return(child);
 				break;
 			}
@@ -34,7 +34,7 @@ Instruction *childI(Instruction *parent){
 			case STOREAI:		// 1 Register => 1 Variable
 				if(parent->field2==child->field3){
 					child_1=childI(child);
-					child->next=child_1
+					child->next=child_1;
 					return(child);
 				}
 				break;
@@ -47,7 +47,7 @@ Instruction *childI(Instruction *parent){
 			case LOADI: 		// 1 Constant => 1 Register
 				if(parent->field1==child->field2){
 					child_1=childI(child);
-					child->next=child_1
+					child->next=child_1;
 					return(child);
 				}
 				break;
@@ -58,7 +58,7 @@ Instruction *childI(Instruction *parent){
 			case DIV:
 				if(parent->field1==child->field3){
 					child_1=childI(child);
-					child->next=child_1
+					child->next=child_1;
 					return(child);
 				}
 				break;
@@ -160,12 +160,14 @@ int main()
 	if (head) PrintInstructionList(stdout, head);
 	printf("\n\n");
 
-	out->next = childI(out);
+	head = out
+	out = childI(out);
+	head->next = out
 	printf("\n\n");
 
-	for(head=cur;head;head=head->next){
-		printf("%p ---> ", (void *) head);
-		PrintInstruction(stdout,head);
+	for(out=head;out;out=out->next){
+		printf("%p ---> ", (void *) out);
+		PrintInstruction(stdout,out);
 	}
 	//for(head=out;out->next;out=out->next) out->next->prev = out;
 
