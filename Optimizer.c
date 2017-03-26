@@ -13,7 +13,7 @@
 #include "InstrUtils.h"
 #include "Utils.h"
 
-void *childTree(Instruction *parent){
+void childTree(Instruction *parent){
 	PrintInstruction(stdout, parent);
 	parent->critical='C';
 	Instruction *child;
