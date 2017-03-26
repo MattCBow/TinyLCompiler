@@ -135,7 +135,7 @@ int main()
 
 	Instruction *end;
 	for(end=head; end->opcode!=OUTPUTAI; end=end->next);
-
+	/*
 	end->next = childI(end);
 	printf("\n\n");
 
@@ -144,6 +144,6 @@ int main()
 		PrintInstruction(stdout,end);
 		end = end->next;
 	}
-
+	*/
 	return EXIT_SUCCESS;
 }
