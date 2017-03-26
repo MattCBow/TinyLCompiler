@@ -138,7 +138,7 @@ int main()
 
 	Instruction *tail;
 	for(tail=head; tail->opcode!=OUTPUTAI; tail=tail->next)
-		if(tail->prev)tail->prev->next==NULL;
+		if(tail->prev) tail->prev->next=NULL;
 
 	tail->next = childI(tail);
 	printf("\n\n");
