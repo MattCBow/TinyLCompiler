@@ -162,7 +162,7 @@ int main()
 
 	head = out
 	out = childI(out);
-	head->next = out
+	head->next = out;
 	printf("\n\n");
 
 	for(out=head;out;out=out->next){
