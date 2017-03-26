@@ -14,8 +14,7 @@
 #include "Utils.h"
 
 Instruction *childI(Instruction *parent){
-	printf("%p ----> ", (void *) parent);
-	PrintInstruction(stdout, parent);
+	parent->critical='C';
 	Instruction *child;
 	int source;
 	for(child=parent; child; child=child->prev){
@@ -137,8 +136,13 @@ int main()
 	printf("\n\n");
 
 
-	Instruction *tail;
-	for(tail=head; tail->opcode!=OUTPUTAI; tail=tail->next);
+	Instruction *cur;
+	for(cur=head; cur->opcode!=OUTPUTAI; cur=cur->next)
+		cur->critical='N';
+	cur->next = childI(cur);
+	for(cur=head;cur!=NULL;cur = cur->next){
+		if(cur->critical=='Y')PrintInstruction(outfile, cur);
+	}
 
 	tail->next = childI(tail);
 	printf("\n\n");
