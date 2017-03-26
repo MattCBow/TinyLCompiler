@@ -13,9 +13,10 @@
 #include "InstrUtils.h"
 #include "Utils.h"
 
-Instruction *childI(Instruction *parent){
-	printf("%p ----> ", (void *) parent);
-	PrintInstruction(stdout, parent);
+
+Instruction *childTree(Instruction *parent){
+	//printf("%p ----> ", (void *) parent);
+	//PrintInstruction(stdout, parent);
 	Instruction *child;
 	int source;
 	for(child=parent; child; child=child->prev){
@@ -81,13 +82,14 @@ Instruction *childI(Instruction *parent){
 			return(NULL);
 		}
 		if(source == 1){
-			child->next=childI(child);
+			parent=child;
+			parent->next=childTree(child);
 			Instruction *child_1;
 			printf("BRANCH->\n");
 			for(child_1=child;child_1->next;child_1=child_1->next)
 				PrintInstruction(stdout, parent);
 			printf("<-BRANCH\n");
-			return(child);
+			return(parent);
 		}
 		if(source == 2){
 			// HOLD parent
@@ -104,10 +106,8 @@ Instruction *childI(Instruction *parent){
 			if(parent->field2==child->field2) parent->field1 = field1;
 			// FIND child_2
 			Instruction *child_1, *child_2;
-			printf("FORK\n");
-			child_1 = childI(child);
-			printf("SPLIT\n");
-			child_2 = childI(parent);
+			child_1 = childTree(child);
+			child_2 = childTree(parent);
 			// RESET parent
 			parent->opcode = opcode;
 			parent->field1 = field1;
