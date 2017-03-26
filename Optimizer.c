@@ -13,9 +13,7 @@
 #include "InstrUtils.h"
 #include "Utils.h"
 
-Instruction *childI(Instruction *parent){
-	//printf("%p ---> ", (void *) parent);
-	//PrintInstruction(stdout,parent);
+Instruction *childI(Instruction *parent){=
 	Instruction *child;
 	int source;
 	for(child=parent; child; child=child->prev){
@@ -32,13 +30,7 @@ Instruction *childI(Instruction *parent){
 		case OUTPUTAI:		// 1 Variable => 1 Constant
 			switch (child->opcode) {
 			case STOREAI:		// 1 Register => 1 Variable
-				if(parent->field2==child->field3){
-					parent = child;
-					parent->next=childI(child);
-					printf("%p SINGLE ", (void *) child);
-					PrintInstruction(stdout, child);
-					return(parent);
-				}
+				if(parent->field2==child->field3) source = 1;
 				break;
 			default:
 				break;
@@ -87,13 +79,15 @@ Instruction *childI(Instruction *parent){
 			return(NULL);
 		}
 		if(source == 1){
+			printf("%p SINGLE ", (void *) parent);
+			PrintInstruction(stdout, parent);
 			parent = child;
 			parent->next=childI(child);
-			printf("%p SINGLE ", (void *) child);
-			PrintInstruction(stdout, child);
 			return(parent);
 		}
 		if(source == 2){
+			printf("%p MERGE ", (void *) parent);
+			PrintInstruction(stdout, parent);
 			// HOLD parent
 			OpCode opcode;
 			int field1, field2, field3;
@@ -117,8 +111,7 @@ Instruction *childI(Instruction *parent){
 			parent->field3 = field3;
 			// Merge child_1 and child_2
 			parent = child;
-			printf("%p MERGE ", (void *) child);
-			PrintInstruction(stdout, child);
+
 			parent->next = child_1;/*
 			while(child){
 
