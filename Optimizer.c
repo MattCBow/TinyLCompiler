@@ -108,7 +108,7 @@ Instruction *childI(Instruction *parent){
 			parent->field3 = field3;
 			// Merge child_1 and child_2
 			parent=child;
-			if(child_1<child_2){
+			if(child_1>child_2){
 				child->next = child_1;
 				child=child->next;
 			}
