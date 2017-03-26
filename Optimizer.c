@@ -108,8 +108,8 @@ Instruction *childI(Instruction *parent){
 			parent->field3 = field3;
 			// Merge child_1 and child_2
 
-			while(child_1) child_1 = child_1->next;
-			while(child_2) child_2 = child_2->next;
+			//while(child_1->n) child_1 = child_1->next;
+			//while(child_2) child_2 = child_2->next;
 			//printf("%p ---> ", (void *) child_1);
 			//printf("%p ---> ", (void *) child_2);
 
