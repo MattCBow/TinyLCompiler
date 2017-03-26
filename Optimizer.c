@@ -108,29 +108,19 @@ Instruction *childI(Instruction *parent){
 			parent->field2 = field2;
 			parent->field3 = field3;
 			// Merge child_1 and child_2
+			parent = child;
 			for(child=child_1;child;child=child->next);
 			for(child=child_2;child;child=child->next);
-			parent = child;
-			/*
 			parent->next = child_1;
+			child = parent;
 			while(child!=NULL){
 				printf("%p MERGE ", (void *) child);
-				if(child_1){
-					child->next=child_1;
-					child_1 = child_1->next;
-					child=child->next;
-				}
-				else if(child_2){
-					child->next=child_2;
-					child_2 = child_2->next;
-					child=child->next;
-				}
-				else{
-					child->next = NULL;
-					child=child->next;
-				}
+				PrintInstruction(stdout,parent);
+				child->next=child_1;
+				child=child->next;
+				child_1=child_1->next;
+
 			}
-			*/
 			return(parent);
 		}
 	}
