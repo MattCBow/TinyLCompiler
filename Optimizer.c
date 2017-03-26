@@ -101,6 +101,7 @@ Instruction *childI(Instruction *parent){
 			Instruction *child_1, *child_2;
 			printf("FORK\n");
 			child_1 = childI(child);
+			printf("SPLIT\n");
 			child_2 = childI(parent);
 			// RESET parent
 			parent->opcode = opcode;
