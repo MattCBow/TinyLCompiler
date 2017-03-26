@@ -80,11 +80,11 @@ Instruction *childI(Instruction *parent){
 		if(source == 0){
 			return(NULL);
 		}
-		if(source == 1 || source == 2){
+		if(source == 1){
 			child->next=childI(child);
 			return(child);
 		}
-		if(source == 4){
+		if(source == 2){
 			// HOLD parent
 			OpCode opcode;
 			int field1, field2, field3;
@@ -108,10 +108,9 @@ Instruction *childI(Instruction *parent){
 			parent->field3 = field3;
 			// Merge child_1 and child_2
 
-			//while(child_1->n) child_1 = child_1->next;
+			//while(child_1) child_1 = child_1->next;
 			//while(child_2) child_2 = child_2->next;
-			//printf("%p ---> ", (void *) child_1);
-			//printf("%p ---> ", (void *) child_2);
+			//printf("%p ---> ", (void *) out);
 
 			child->next=child_1;
 			return(parent);
@@ -130,24 +129,21 @@ int main()
 		exit(EXIT_FAILURE);
 	}
 
-	Instruction *out;
-	for(out=head; out->opcode!=OUTPUTAI; out=out->next)
-		out->next = NULL;
-
-	/*
 	if (head) PrintInstructionList(stdout, head);
 	printf("\n\n");
-	*/
 
-	head = out;
-	out = childI(out);
-	head->next = out;
+
+	Instruction *end;
+	for(end=head; end->opcode!=OUTPUTAI; end=end->next);
+
+	end->next = childI(end);
 	printf("\n\n");
-	/*
-	for(out = head; out; out=out->next){
-		printf("%p ---> ", (void *) out);
-		PrintInstruction(stdout,out);
-	}*/
+
+	while(end){
+		printf("%p ---> ", (void *) end);
+		PrintInstruction(stdout,end);
+		end = end->next;
+	}
 
 	return EXIT_SUCCESS;
 }
