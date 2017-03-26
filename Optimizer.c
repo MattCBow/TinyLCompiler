@@ -13,7 +13,8 @@
 #include "InstrUtils.h"
 #include "Utils.h"
 
-Instruction *childI(Instruction *parent){
+void *childTree(Instruction *parent){
+	PrintInstruction(outfile, cur);
 	parent->critical='C';
 	Instruction *child;
 	int source;
@@ -77,12 +78,11 @@ Instruction *childI(Instruction *parent){
 
 		}
 		if(source == 0){
-			return(NULL);
+			return;
 		}
 		if(source == 1){
-			child->next=childI(child);
-			Instruction *child_1;
-			return(child);
+			childTree(child);
+			return;
 		}
 		if(source == 2){
 			// HOLD parent
@@ -98,25 +98,14 @@ Instruction *childI(Instruction *parent){
 			if(parent->field1==child->field2) parent->field1 = field2;
 			if(parent->field2==child->field2) parent->field1 = field1;
 			// FIND child_2
-			Instruction *child_1, *child_2;
-			child_1 = childI(child);
-			child_2 = childI(parent);
+			childTree(child);
+			childI(parent);
 			// RESET parent
 			parent->opcode = opcode;
 			parent->field1 = field1;
 			parent->field2 = field2;
 			parent->field3 = field3;
-			// Merge child_1 and child_2
-
-			//while(child_1) child_1 = child_1->next;
-			//while(child_2) child_2 = child_2->next;
-			//printf("%p ---> ", (void *) out);
-			parent = child;
-			child->next=child_1;
-			//while(child_1->next!=NULL) child_1=child_1->next;
-			//while(child_2->next)child_2=child_2->next;
-			//child->next=child_2;
-			return(parent);
+			return;
 		}
 	}
 	return(NULL);
@@ -135,15 +124,14 @@ int main()
 	if (head) PrintInstructionList(stdout, head);
 	printf("\n\n");
 
-
 	Instruction *cur;
 	for(cur=head; cur->opcode!=OUTPUTAI; cur=cur->next)
 		cur->critical='N';
-	cur->next = childI(cur);
+	childTree(cur);
 	printf("\n\n");
 	for(cur=head;cur!=NULL;cur = cur->next)
-		if(cur->critical=='Y')PrintInstruction(outfile, cur);
-		
+		if(cur->critical=='Y') PrintInstruction(outfile, cur);
+
 
 	return EXIT_SUCCESS;
 }
