@@ -111,6 +111,7 @@ Instruction *childI(Instruction *parent){
 			parent = child;
 			parent->next=child_1;
 			while(child_1){
+				child->next=child_1;
 				child_1 = child_1->next;
 			}
 			/*
