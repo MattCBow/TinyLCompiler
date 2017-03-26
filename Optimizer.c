@@ -113,14 +113,11 @@ Instruction *childI(Instruction *parent){
 				printf("%p MERGE ", (void *) child);
 				PrintInstruction(stdout, child);
 				if(child_1){
-					child->next = child_1;
 					child_1 = child_1->next;
-					child = child->next;
+					child=NULL;
 				}
 				else if(child_2){
-					child->next = child_2;
 					child_2 = child_2->next;
-					child = child->next;
 				}
 			}
 			/*
