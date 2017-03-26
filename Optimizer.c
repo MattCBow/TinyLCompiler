@@ -18,13 +18,13 @@ Instruction *childI(Instruction *parent){
 	PrintInstruction(stdout,parent);
 	Instruction *child;
 	int source;
-	source = -1;
 	for(child=parent; child; child=child->prev){
+		source = -1;
 		switch (parent->opcode) {
 		case LOADI:				// 1 Constant => 1 Register
 			switch (child->opcode){
 			default:
-				return(NULL);
+				if(parent->opcode == child->opcode)source = 0;
 				break;
 			}
 			break;
@@ -32,11 +32,7 @@ Instruction *childI(Instruction *parent){
 		case OUTPUTAI:		// 1 Variable => 1 Constant
 			switch (child->opcode) {
 			case STOREAI:		// 1 Register => 1 Variable
-				if(parent->field2==child->field3){
-					parent = child;
-					parent->next=childI(child);
-					return(parent);
-				}
+				if(parent->field2==child->field3) source = 1;
 				break;
 			default:
 				break;
@@ -45,22 +41,14 @@ Instruction *childI(Instruction *parent){
 		case STOREAI:			// 1 Register => 1 Variable
 			switch (child->opcode) {
 			case LOADI: 		// 1 Constant => 1 Register
-				if(parent->field1==child->field2){
-					parent = child;
-					parent->next=childI(child);
-					return(parent);
-				}
+				if(parent->field1==child->field2) source = 1;
 				break;
 			case LOADAI: 		// 1 Variable => 1 Register
 			case ADD:				// 2 Registers => 1 Register
 			case SUB:
 			case MUL:
 			case DIV:
-				if(parent->field1==child->field3){
-					parent = child;
-					parent->next=childI(child);
-					return(parent);
-				}
+				if(parent->field1==child->field3) source = 1;
 				break;
 			default:
 				break;
@@ -72,18 +60,16 @@ Instruction *childI(Instruction *parent){
 		case DIV:					// 2 Registers => 1 Register
 			switch (child->opcode) {
 			case LOADI: 		// 1 Constant => 1 Register
-				if(parent->field1==child->field2 || parent->field2==child->field2){
-					source=2;
-				}
+				if(parent->field1==child->field2) source = 2;
+				if(parent->field2==child->field2) source = 2;
 				break;
 			case LOADAI: 		// 1 Variable => 1 Register
 			case ADD:				// 2 Registers => 1 Register
 			case SUB:
 			case MUL:
 			case DIV:
-				if(parent->field1==child->field3 || parent->field2==child->field3){
-					source=2;
-				}
+				if(parent->field1==child->field3) source = 2;
+				if(parent->field2==child->field3) source = 2;
 				break;
 			default:
 				break;
@@ -91,8 +77,13 @@ Instruction *childI(Instruction *parent){
 			break;
 
 		}
+		if(source == 0){
+			return(NULL);
+		}
 		if(source == 1){
-
+			parent = child;
+			parent->next=childI(child);
+			return(parent);
 		}
 		if(source == 2){
 			// HOLD parent
