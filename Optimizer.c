@@ -99,7 +99,7 @@ void childTree(Instruction *parent){
 			if(parent->field2==child->field2) parent->field1 = field1;
 			// FIND child_2
 			childTree(child);
-			childI(parent);
+			childTree(parent);
 			// RESET parent
 			parent->opcode = opcode;
 			parent->field1 = field1;
