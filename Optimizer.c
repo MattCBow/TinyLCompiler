@@ -14,8 +14,8 @@
 #include "Utils.h"
 
 Instruction *childI(Instruction *parent){
-	printf("%p ---> ", (void *) parent);
-	PrintInstruction(stdout,parent);
+	//printf("%p ---> ", (void *) parent);
+	//PrintInstruction(stdout,parent);
 	Instruction *child;
 	int source;
 	for(child=parent; child; child=child->prev){
@@ -83,6 +83,8 @@ Instruction *childI(Instruction *parent){
 		if(source == 1){
 			parent = child;
 			parent->next=childI(child);
+			printf("%p SINGLE ", (void *) child);
+			PrintInstruction(stdout, child);
 			return(parent);
 		}
 		if(source == 2){
