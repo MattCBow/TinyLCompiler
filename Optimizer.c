@@ -79,11 +79,7 @@ Instruction *childI(Instruction *parent){
 			return(NULL);
 		}
 		if(source == 1){
-			printf("%p PARENT ", (void *) parent);
-			PrintInstruction(stdout, parent);
 			child->next=childI(child);
-			printf("%p CHILD ", (void *) child);
-			PrintInstruction(stdout, child);
 			return(child);
 		}
 		if(source == 2){
@@ -103,7 +99,7 @@ Instruction *childI(Instruction *parent){
 			if(parent->field2==child->field2) parent->field1 = field1;
 			// FIND child_2
 			Instruction *child_1, *child_2;
-			child_1=childI(child);
+			child_1 = childI(child);
 			child_2 = childI(parent);
 			// RESET parent
 			parent->opcode = opcode;
@@ -111,12 +107,13 @@ Instruction *childI(Instruction *parent){
 			parent->field2 = field2;
 			parent->field3 = field3;
 			// Merge child_1 and child_2
-			parent = child;
-			parent->next = child_1;
-			printf("%p CHILD1 ", (void *) child_1);
-			PrintInstruction(stdout, parent);
-			printf("%p CHILD2 ", (void *) child_2);
-			PrintInstruction(stdout, parent);
+			parent=child;
+			if(child_1>child_2){
+				child->next = child_1;
+			}
+			else{
+				child->next = child_2;
+			}
 			/*
 			while(child){
 
