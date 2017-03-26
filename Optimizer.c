@@ -135,10 +135,10 @@ int main()
 
 	Instruction *end;
 	for(end=head; end->opcode!=OUTPUTAI; end=end->next);
-	/*
+
 	end->next = childI(end);
 	printf("\n\n");
-
+	/*
 	while(end){
 		printf("%p ---> ", (void *) end);
 		PrintInstruction(stdout,end);
