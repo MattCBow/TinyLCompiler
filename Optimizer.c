@@ -13,10 +13,9 @@
 #include "InstrUtils.h"
 #include "Utils.h"
 
-
-Instruction *childTree(Instruction *parent){
-	//printf("%p ----> ", (void *) parent);
-	//PrintInstruction(stdout, parent);
+Instruction *childI(Instruction *parent){
+	printf("%p ----> ", (void *) parent);
+	PrintInstruction(stdout, parent);
 	Instruction *child;
 	int source;
 	for(child=parent; child; child=child->prev){
@@ -82,14 +81,9 @@ Instruction *childTree(Instruction *parent){
 			return(NULL);
 		}
 		if(source == 1){
-			parent=child;
-			parent->next=childTree(child);
+			child->next=childI(child);
 			Instruction *child_1;
-			printf("BRANCH->\n");
-			for(child_1=child;child_1->next;child_1=child_1->next)
-				PrintInstruction(stdout, parent);
-			printf("<-BRANCH\n");
-			return(parent);
+			return(child);
 		}
 		if(source == 2){
 			// HOLD parent
@@ -106,8 +100,8 @@ Instruction *childTree(Instruction *parent){
 			if(parent->field2==child->field2) parent->field1 = field1;
 			// FIND child_2
 			Instruction *child_1, *child_2;
-			child_1 = childTree(child);
-			child_2 = childTree(parent);
+			child_1 = childI(child);
+			child_2 = childI(parent);
 			// RESET parent
 			parent->opcode = opcode;
 			parent->field1 = field1;
@@ -146,7 +140,7 @@ int main()
 	Instruction *tail;
 	for(tail=head; tail->opcode!=OUTPUTAI; tail=tail->next);
 
-	tail->next = childTree(tail);
+	tail->next = childI(tail);
 	printf("\n\n");
 
 	/*
