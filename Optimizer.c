@@ -124,7 +124,7 @@ Instruction *childI(Instruction *parent){
 					if(parent->field2==child->field2) find_field = field1;
 					// REPLACE parent
 					parent->opcode = STOREAI;
-					parent->field1 = find_field;
+					parent->field1 = field1;
 					parent->field2 = 0;
 					parent->field3 = 0;
 					// FIND child_2
