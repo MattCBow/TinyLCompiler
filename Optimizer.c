@@ -109,10 +109,12 @@ Instruction *childI(Instruction *parent){
 			parent->field3 = field3;
 			// Merge child_1 and child_2
 			parent = child;
-			parent->next = child_1;/*
+			parent->next = child_1;
 			while(child){
 				printf("%p MERGE ", (void *) child);
 				PrintInstruction(stdout, child);
+				child=child->next;
+				/*
 				if(child_1){
 					child_1 = child_1->next;
 					child=NULL;
@@ -120,8 +122,9 @@ Instruction *childI(Instruction *parent){
 				else if(child_2){
 					child_2 = child_2->next;
 				}
+				*/
 			}
-			*/
+
 			return(parent);
 		}
 	}
