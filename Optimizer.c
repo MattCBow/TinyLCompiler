@@ -160,7 +160,7 @@ int main()
 	if (head) PrintInstructionList(stdout, head);
 	printf("\n\n");
 
-	head = out
+	head = out;
 	out = childI(out);
 	head->next = out;
 	printf("\n\n");
