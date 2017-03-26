@@ -82,6 +82,11 @@ Instruction *childI(Instruction *parent){
 		}
 		if(source == 1){
 			child->next=childI(child);
+			Instruction *child_1;
+			printf("BRANCH->\n");
+			for(child_1=child;child_1->next;child_1=child_1->next)
+				PrintInstruction(stdout, parent);
+			printf("<-BRANCH\n");
 			return(child);
 		}
 		if(source == 2){
