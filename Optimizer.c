@@ -109,17 +109,12 @@ Instruction *childI(Instruction *parent){
 			parent->field3 = field3;
 			// Merge child_1 and child_2
 			parent = child;
-			for(child=child_1;child;child=child->next);
-			for(child=child_2;child;child=child->next);
-			parent->next = child_1;
-			child = parent;
 			while(child!=NULL){
 				printf("%p MERGE ", (void *) child);
 				PrintInstruction(stdout,parent);
 				child->next=child_1;
 				child=child->next;
 				child_1=child_1->next;
-
 			}
 			return(parent);
 		}
