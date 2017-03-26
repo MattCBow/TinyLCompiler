@@ -112,6 +112,10 @@ Instruction *childI(Instruction *parent){
 			while(child){
 				printf("%p MERGE ", (void *) child);
 				PrintInstruction(stdout, child);
+				if(child_1){
+					child=child_1;
+					child_1=child_1->next;
+				}
 				child=child->next;
 				/*
 				if(child_1){
@@ -123,7 +127,6 @@ Instruction *childI(Instruction *parent){
 				}
 				*/
 			}
-
 			return(parent);
 		}
 	}
