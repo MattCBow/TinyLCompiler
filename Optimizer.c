@@ -112,8 +112,8 @@ Instruction *childI(Instruction *parent){
 			//while(child_2) child_2 = child_2->next;
 			//printf("%p ---> ", (void *) out);
 
-			child->next=child_1;
-			return(parent);
+			child->next=NULL;
+			return(child);
 		}
 	}
 	return(NULL);
@@ -133,16 +133,16 @@ int main()
 	printf("\n\n");
 
 
-	Instruction *end;
-	for(end=head; end->opcode!=OUTPUTAI; end=end->next);
+	Instruction *tail;
+	for(tail=head; tail->opcode!=OUTPUTAI; tail=tail->next);
 
-	end->next = childI(end);
+	tail->next = childI(end);
 	printf("\n\n");
 	/*
-	while(end){
-		printf("%p ---> ", (void *) end);
-		PrintInstruction(stdout,end);
-		end = end->next;
+	while(tail){
+		printf("%p ---> ", (void *) tail);
+		PrintInstruction(stdout,tail);
+		tail = tail->next;
 	}
 	*/
 	return EXIT_SUCCESS;
