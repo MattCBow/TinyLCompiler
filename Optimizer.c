@@ -79,14 +79,15 @@ Instruction *childI(Instruction *parent){
 			return(NULL);
 		}
 		if(source == 1){
-			printf("%p SINGLE ", (void *) parent);
+			printf("%p PARENT ", (void *) parent);
 			PrintInstruction(stdout, parent);
-			parent = child;
-			parent->next=childI(child);
-			return(parent);
+			child->next=childI(child);
+			printf("%p CHILD ", (void *) child);
+			PrintInstruction(stdout, child);
+			return(child);
 		}
 		if(source == 2){
-			printf("%p MERGE ", (void *) parent);
+			printf("%p PARENT ", (void *) parent);
 			PrintInstruction(stdout, parent);
 			// HOLD parent
 			OpCode opcode;
@@ -111,8 +112,12 @@ Instruction *childI(Instruction *parent){
 			parent->field3 = field3;
 			// Merge child_1 and child_2
 			parent = child;
-
-			parent->next = child_1;/*
+			parent->next = child_1;
+			printf("%p CHILD1 ", (void *) child_1);
+			PrintInstruction(stdout, parent);
+			printf("%p CHILD2 ", (void *) child_2);
+			PrintInstruction(stdout, parent);
+			/*
 			while(child){
 
 				if(child_1){
