@@ -101,9 +101,35 @@ Instruction *childI(Instruction *parent){
 					//for(child=child_1; child_1->next; child_1=child_1->next);
 					//child_1->next=child_2;
 					// return
-					child_1 = childI(child);
 					parent = child;
-					child=child_1;
+					while(child){
+						if(!child_1 && !child_2){
+							child=child->next;
+						}
+						else if(!child_1){
+							if(child_2<child) child->next = child_2;
+							child_2=child_2->next;
+							child=child->next;
+						}
+						else if(!child_2){
+							if(child_1<child) child->next = child_1;
+							child_1=child_1->next;
+							child=child->next;
+						}
+						else if(child_1>child_2){
+							if(child_1<child) child->next = child_1;
+							child_1=child_1->next;
+							child=child->next;
+						}
+						else if(child_1<child_2){
+							if(child_2<child) child->next = child_2;
+							child_2=child_2->next;
+							child=child->next;
+						}
+						else if(child_1==child_2){
+							child_1->next = child_1;
+						}
+					}
 					parent->next=child;
 					return(child);
 				}
@@ -128,7 +154,7 @@ Instruction *childI(Instruction *parent){
 					if(parent->field2==child->field2) parent->field1 = field1;
 					// FIND child_2
 					child_1=childI(child);
-					//child_2 = childI(parent);
+					  child_2 = childI(parent);
 					// RESET parent
 					parent->opcode = opcode;
 					parent->field1 = field1;
@@ -138,9 +164,35 @@ Instruction *childI(Instruction *parent){
 					//for(child=child_1; child_1->next; child_1=child_1->next);
 					//child_1->next=child_2;
 					// return
-					child_1 = childI(child);
 					parent = child;
-					child=child_1;
+					while(child){
+						if(!child_1 && !child_2){
+							child=child->next;
+						}
+						else if(!child_1){
+							if(child_2<child) child->next = child_2;
+							child_2=child_2->next;
+							child=child->next;
+						}
+						else if(!child_2){
+							if(child_1<child) child->next = child_1;
+							child_1=child_1->next;
+							child=child->next;
+						}
+						else if(child_1>child_2){
+							if(child_1<child) child->next = child_1;
+							child_1=child_1->next;
+							child=child->next;
+						}
+						else if(child_1<child_2){
+							if(child_2<child) child->next = child_2;
+							child_2=child_2->next;
+							child=child->next;
+						}
+						else if(child_1==child_2){
+							child_1->next = child_1;
+						}
+					}
 					parent->next=child;
 					return(child);
 				}
