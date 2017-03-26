@@ -92,68 +92,10 @@ Instruction *childI(Instruction *parent){
 					parent->field1 = field1;
 					parent->field2 = field2;
 					parent->field3 = field3;
-					// Connect child_1 and child_2
-					//for(child=child_1; child_1->next; child_1=child_1->next);
-					//child_1->next=child_2;
-					// return
+					// Merge child_1 and child_2
 					parent = child;
-					//parent->next = child_1;
 					while(child_1)child_1=child_1->next;
 					while(child_2)child_2=child_2->next;
-					/*
-					while(child_1 && child_2){
-						if(child_1==child_2){
-
-						}
-						if(child_1>child_2){
-							if(child_1<child){
-								child->next=child_1;
-								child = child_1->next;
-							}
-							child_1 = child_1->next;
-						}
-						else if(child_2>child_1){
-							if(child_2<child){
-								child->next = child_2;
-								child = child_2->next;
-							}
-							child_2 = child_2->next;
-						}
-						else{
-							child_1 = child_1->next;
-						}
-					}
-					*/
-					/*
-					while(child_1 || child){
-						if(!child_1 && !child_2){
-							child=child->next;
-						}
-						else if(!child_1){
-							if(child_2<child) child->next = child_2;
-							child_2=child_2->next;
-							child=child->next;
-						}
-						else if(!child_2){
-							if(child_1<child) child->next = child_1;
-							child_1=child_1->next;
-							child=child->next;
-						}
-						else if(child_1>child_2){
-							if(child_1<child) child->next = child_1;
-							child_1=child_1->next;
-							child=child->next;
-						}
-						else if(child_1<child_2){
-							if(child_2<child) child->next = child_2;
-							child_2=child_2->next;
-							child=child->next;
-						}
-						else if(child_1==child_2){
-							child_1->next = child_1;
-						}
-					}
-					*/
 					return(parent);
 
 				}
@@ -185,42 +127,10 @@ Instruction *childI(Instruction *parent){
 					parent->field1 = field1;
 					parent->field2 = field2;
 					parent->field3 = field3;
-					// Connect child_1 and child_2
-					//for(child=child_1; child_1->next; child_1=child_1->next);
-					//child_1->next=child_2;
-					// return
+					// Merge child_1 and child_2
 					parent = child;
-					parent->next = childI(child);
-					/*
-					while(child){
-						if(!child_1 && !child_2){
-							child=child->next;
-						}
-						else if(!child_1){
-							if(child_2<child) child->next = child_2;
-							child_2=child_2->next;
-							child=child->next;
-						}
-						else if(!child_2){
-							if(child_1<child) child->next = child_1;
-							child_1=child_1->next;
-							child=child->next;
-						}
-						else if(child_1>child_2){
-							if(child_1<child) child->next = child_1;
-							child_1=child_1->next;
-							child=child->next;
-						}
-						else if(child_1<child_2){
-							if(child_2<child) child->next = child_2;
-							child_2=child_2->next;
-							child=child->next;
-						}
-						else if(child_1==child_2){
-							child_1->next = child_1;
-						}
-					}
-					*/
+					while(child_1)child_1=child_1->next;
+					while(child_2)child_2=child_2->next;
 					return(parent);
 				}
 				break;
