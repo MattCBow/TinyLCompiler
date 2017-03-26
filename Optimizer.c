@@ -110,22 +110,20 @@ Instruction *childI(Instruction *parent){
 			// Merge child_1 and child_2
 			parent = child;
 			parent->next=child_1;
-			while(child_1 && child_2){
+			while(child){
 				printf("%p MERGE ", (void *) child);
 				PrintInstruction(stdout,parent);
-				if(child_1>child_2){
-					printf("%p > %p", (void *) child_1, (void *) child_2);
-					child->next=child_1;
+				if(child_1){
+					child->next = child_1;
 					child_1 = child_1->next;
+					child = child->next;
 				}
-				else{
-					printf("%p < %p", (void *) child_1, (void *) child_2);
-					child->next=child_2;
-					child_2=child_2->next;
+				else if(child_2){
+					child->next = child_2;
+					child_2 = child_2->next;
+					child = child->next;
 				}
-				child=child->next;
 			}
-			child->next = child_2;
 			/*
 			while(child_2){
 				child->next =child_2;
