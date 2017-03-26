@@ -98,7 +98,13 @@ Instruction *childI(Instruction *parent){
 					// return
 					parent = child;
 					//parent->next = child_1;
+					while(child_1)child_1=child_1->next;
+					while(child_2)child_2=child_2->next;
+					/*
 					while(child_1 && child_2){
+						if(child_1==child_2){
+
+						}
 						if(child_1>child_2){
 							if(child_1<child){
 								child->next=child_1;
@@ -106,8 +112,8 @@ Instruction *childI(Instruction *parent){
 							}
 							child_1 = child_1->next;
 						}
-						else if(child_2<child_1){
-							if(child_1<child){
+						else if(child_2>child_1){
+							if(child_2<child){
 								child->next = child_2;
 								child = child_2->next;
 							}
@@ -117,6 +123,7 @@ Instruction *childI(Instruction *parent){
 							child_1 = child_1->next;
 						}
 					}
+					*/
 					/*
 					while(child_1 || child){
 						if(!child_1 && !child_2){
