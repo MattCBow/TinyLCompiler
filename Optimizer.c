@@ -96,6 +96,8 @@ Instruction *childI(Instruction *parent){
 					//child_1->next=child_2;
 					// return
 					parent = child;
+					parent->next = childI(child);
+					/*
 					while(child_1 || child){
 						if(!child_1 && !child_2){
 							child=child->next;
@@ -124,7 +126,9 @@ Instruction *childI(Instruction *parent){
 							child_1->next = child_1;
 						}
 					}
+					*/
 					return(parent);
+
 				}
 				break;
 			case LOADAI: 		// 1 Variable => 1 Register
@@ -147,7 +151,7 @@ Instruction *childI(Instruction *parent){
 					if(parent->field2==child->field2) parent->field1 = field1;
 					// FIND child_2
 					child_1=childI(child);
-					 child_2 = childI(parent);
+					child_2 = childI(parent);
 					// RESET parent
 					parent->opcode = opcode;
 					parent->field1 = field1;
@@ -158,6 +162,8 @@ Instruction *childI(Instruction *parent){
 					//child_1->next=child_2;
 					// return
 					parent = child;
+					parent->next = childI(child);
+					/*
 					while(child){
 						if(!child_1 && !child_2){
 							child=child->next;
@@ -186,6 +192,7 @@ Instruction *childI(Instruction *parent){
 							child_1->next = child_1;
 						}
 					}
+					*/
 					return(parent);
 				}
 				break;
