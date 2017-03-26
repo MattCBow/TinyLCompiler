@@ -16,7 +16,7 @@
 Instruction *childI(Instruction *parent){
 	printf("%p ---> ", (void *) parent);
 	PrintInstruction(stdout,parent);
-	Instruction *child, *child_1, *child_2;
+	Instruction *child;
 	for(child=parent; child; child=child->prev){
 		switch (parent->opcode) {
 		case LOADI:				// 1 Constant => 1 Register
@@ -84,6 +84,7 @@ Instruction *childI(Instruction *parent){
 					if(parent->field1==child->field2) parent->field1 = field2;
 					if(parent->field2==child->field2) parent->field1 = field1;
 					// FIND child_2
+					Instruction *child_1, *child_2, *head;
 					child_1=childI(child);
 					child_2 = childI(parent);
 					// RESET parent
@@ -96,7 +97,26 @@ Instruction *childI(Instruction *parent){
 					//child_1->next=child_2;
 					// return
 					parent = child;
-					parent->next = childI(child);
+					//parent->next = child_1;
+					while(child_1 && child_2){
+						if(child_1>child_2){
+							if(child_1<child){
+								child->next=child_1;
+								child = child_1->next;
+							}
+							child_1 = child_1->next;
+						}
+						else if(child_2<child_1){
+							if(child_1<child){
+								child->next = child_2;
+								child = child_2->next;
+							}
+							child_2 = child_2->next;
+						}
+						else{
+							child_1 = child_1->next;
+						}
+					}
 					/*
 					while(child_1 || child){
 						if(!child_1 && !child_2){
@@ -150,6 +170,7 @@ Instruction *childI(Instruction *parent){
 					if(parent->field1==child->field2) parent->field1 = field2;
 					if(parent->field2==child->field2) parent->field1 = field1;
 					// FIND child_2
+					Instruction *child_1, *child_2;
 					child_1=childI(child);
 					child_2 = childI(parent);
 					// RESET parent
@@ -230,6 +251,7 @@ int main()
 		printf("%p ---> ", (void *) out);
 		PrintInstruction(stdout,out);
 	}
+
 	//for(head=out;out->next;out=out->next) out->next->prev = out;
 
 
