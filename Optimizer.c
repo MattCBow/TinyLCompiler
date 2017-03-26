@@ -108,13 +108,23 @@ Instruction *childI(Instruction *parent){
 			parent->field3 = field3;
 			// Merge child_1 and child_2
 			parent=child;
+			while()
 			if(child_1<child_2){
 				child->next = child_1;
-				child=child->next;
+				child_1=child_1->next;
 			}
 			else{
 				child->next = child_2;
-				child=child->next;
+				child_2=child_2->next;
+			}
+			child=child->next;
+			if(child_1<child_2){
+				child->next = child_1;
+				child_1=child_1->next;
+			}
+			else{
+				child->next = child_2;
+				child_2=child_2->next;
 			}
 			/*
 			while(child){
