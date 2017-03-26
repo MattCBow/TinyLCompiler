@@ -114,10 +114,12 @@ Instruction *childI(Instruction *parent){
 				printf("%p MERGE ", (void *) child);
 				PrintInstruction(stdout,parent);
 				if(child_1>child_2){
+					printf("%p > %p", (void *) child_1, (void *) child_2);
 					child->next=child_1;
 					child_1 = child_1->next;
 				}
 				else{
+					printf("%p < %p", (void *) child_1, (void *) child_2);
 					child->next=child_2;
 					child_2=child_2->next;
 				}
