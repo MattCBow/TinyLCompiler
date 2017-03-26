@@ -108,12 +108,9 @@ Instruction *childI(Instruction *parent){
 			parent->field3 = field3;
 			// Merge child_1 and child_2
 			parent=child;
-			while(child){
-				child->next = child_1;
-				child_1=child_1->next;
-				child=child->next;
-			}
-
+			parent->next = child_1;
+			for(child_1=parent;child_1->next;child_1=child_1->next);
+			child_1->next=child_2;
 			return(parent);
 		}
 	}
