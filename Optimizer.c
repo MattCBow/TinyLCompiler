@@ -110,6 +110,7 @@ Instruction *childI(Instruction *parent){
 			parent=child;
 			parent->next = child_1;
 			while(child_1->next!=NULL) child_1 = child_1->next;
+			}
 			//child_1->next=child_2;
 
 			return(parent);
@@ -129,10 +130,13 @@ int main()
 	}
 
 	Instruction *out;
-	for(out=head; out->opcode!=OUTPUTAI; out=out->next);
+	for(out=head; out->opcode!=OUTPUTAI; out=out->next)
+		out->next = NULL;
 
+	/*
 	if (head) PrintInstructionList(stdout, head);
 	printf("\n\n");
+	*/
 
 	head = out;
 	out = childI(out);
@@ -143,9 +147,6 @@ int main()
 		printf("%p ---> ", (void *) out);
 		PrintInstruction(stdout,out);
 	}
-
-	//for(head=out;out->next;out=out->next) out->next->prev = out;
-
 
 	return EXIT_SUCCESS;
 }
