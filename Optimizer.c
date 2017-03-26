@@ -99,6 +99,7 @@ Instruction *childI(Instruction *parent){
 			if(parent->field2==child->field2) parent->field1 = field1;
 			// FIND child_2
 			Instruction *child_1, *child_2;
+			printf("FORK\n");
 			child_1 = childI(child);
 			child_2 = childI(parent);
 			// RESET parent
