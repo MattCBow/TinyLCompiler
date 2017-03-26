@@ -13,7 +13,7 @@
 #include "InstrUtils.h"
 #include "Utils.h"
 
-Instruction *childI(Instruction *parent){=
+Instruction *childI(Instruction *parent){
 	Instruction *child;
 	int source;
 	for(child=parent; child; child=child->prev){
