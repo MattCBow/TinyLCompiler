@@ -108,7 +108,7 @@ void childTree(Instruction *parent){
 			return;
 		}
 	}
-	return(NULL);
+	return;
 }
 
 int main()
