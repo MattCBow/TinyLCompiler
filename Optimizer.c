@@ -113,12 +113,14 @@ Instruction *childI(Instruction *parent){
 			while(child_1 && child_2){
 				if(child_1>child_2){
 					child->next=child_1;
-					child=child->next;
 					child_1 = child_1->next;
 				}
 				else{
+					child->next=child_2;
 					child_2=child_2->next;
 				}
+				child=child->next;
+
 			}
 			/*
 			child
