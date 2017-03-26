@@ -146,7 +146,7 @@ int main()
 	Instruction *tail;
 	for(tail=head; tail->opcode!=OUTPUTAI; tail=tail->next);
 
-	tail->next = childI(tail);
+	tail->next = childTree(tail);
 	printf("\n\n");
 
 	/*
