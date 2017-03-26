@@ -109,43 +109,11 @@ Instruction *childI(Instruction *parent){
 			// Merge child_1 and child_2
 			parent=child;
 			while(child){
-				if(child_1 && child_2){
-					if(child_1<child_2){
-						child->next = child_1;
-						child_1=child_1->next;
-					}
-					else{
-						child->next = child_2;
-						child_2=child_2->next;
-					}
-				}
-				else if(child_1){
-					child->next = child_1;
-					child_1=child_1->next;
-				}
-				else if(child_2){
-					child->next = child_2;
-					child_2=child_2->next;
-				}
-				else{
-					child->next=NULL;
-				}
+				child->next = child_1;
+				child_1=child_1->next;
 				child=child->next;
 			}
-			/*
-			while(child){
 
-				if(child_1){
-					child->next=child_1;
-					child_1=child_1->next;
-				}
-				if(child_2){
-					child->next=child_2;
-					child_2=child_2->next;
-				}
-				child->next=NULL;
-				child=child->next;
-			}*/
 			return(parent);
 		}
 	}
