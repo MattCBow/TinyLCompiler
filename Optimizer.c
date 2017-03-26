@@ -111,6 +111,8 @@ Instruction *childI(Instruction *parent){
 			parent = child;
 			parent->next=child_1;
 			while(child_1 && child_2){
+				printf("%p MERGE ", (void *) child);
+				PrintInstruction(stdout,parent);
 				if(child_1>child_2){
 					child->next=child_1;
 					child_1 = child_1->next;
@@ -120,7 +122,6 @@ Instruction *childI(Instruction *parent){
 					child_2=child_2->next;
 				}
 				child=child->next;
-
 			}
 			/*
 			child
