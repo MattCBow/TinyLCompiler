@@ -112,7 +112,7 @@ Instruction *childI(Instruction *parent){
 			//while(child_2) child_2 = child_2->next;
 			//printf("%p ---> ", (void *) out);
 			parent = child;
-			child->next=NULL;
+			child->next=child_1;
 			//while(child_1->next)child_1=child_1->next;
 			//while(child_2->next)child_2=child_2->next;
 			//child->next=child_2;
@@ -137,7 +137,8 @@ int main()
 
 
 	Instruction *tail;
-	for(tail=head; tail->opcode!=OUTPUTAI; tail=tail->next);
+	for(tail=head; tail->opcode!=OUTPUTAI; tail=tail->next)
+		if(tail->prev)tail->prev->next==NULL;
 
 	tail->next = childI(tail);
 	printf("\n\n");
