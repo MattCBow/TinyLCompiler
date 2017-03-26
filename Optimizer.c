@@ -110,31 +110,27 @@ Instruction *childI(Instruction *parent){
 			// Merge child_1 and child_2
 			parent = child;
 			parent->next = child_1;
-			while(child_1 && child_2){
-				printf("%p MERGE ", (void *) parent);
-				PrintInstruction(stdout,parent);
-				if(child_1==child_2){
-					child_2=child_2->next;
+			while(child){
+				printf("%p MERGE ", (void *) child);
+				if(child_1){
+					child->next=child_1;
+					child_1 = child_1->next;
+					child=child->next;
 				}
-				else if (child_1>child_2){
-					if(child>child_1){
-						child->next = child_1;
-						child = child_1;
-					}
-					child_1=child_1->next;
+				else if(child_2){
+					child->next=child_2;
+					child_2 = child_2->next;
+					child=child->next;
 				}
-				else if (child_2>child_1){
-					if(child>child_2){
-						child->next = child_2;
-						child = child_2;
-					}
-					child_2=child_2->next;
+				else{
+					child->next = NULL;
+					child=child->next;
 				}
 			}
 			return(parent);
 		}
 	}
-	return(child);
+	return(NULL);
 }
 
 int main()
