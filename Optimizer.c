@@ -115,16 +115,14 @@ Instruction *childI(Instruction *parent){
 					printf("1A. -------\n");
 					PrintInstruction(stdout,parent);
 					OpCode opcode;
-					int field1, field2, field3, find_field;
+					int field1, field2, field3;
 					opcode = parent->opcode;
 					field1 = parent->field1;
 					field2 = parent->field2;
 					field3 = parent->field3;
-					if(parent->field1==child->field2) find_field = field2;
-					if(parent->field2==child->field2) find_field = field1;
-					// REPLACE parent
 					parent->opcode = STOREAI;
-					parent->field1 = field1;
+					if(parent->field1==child->field2) parent->field1 = field2;
+					if(parent->field2==child->field2) parent->field1 = field1;
 					parent->field2 = 0;
 					parent->field3 = 0;
 					// FIND child_2
