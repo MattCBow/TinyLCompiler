@@ -136,14 +136,14 @@ int main()
 	Instruction *tail;
 	for(tail=head; tail->opcode!=OUTPUTAI; tail=tail->next);
 
-	tail->next = childI(end);
+	tail->next = childI(tail);
 	printf("\n\n");
-	/*
+
 	while(tail){
 		printf("%p ---> ", (void *) tail);
 		PrintInstruction(stdout,tail);
 		tail = tail->next;
 	}
-	*/
+
 	return EXIT_SUCCESS;
 }
