@@ -22,9 +22,7 @@ Instruction *childI(Instruction *parent){
 		case LOADI:				// 1 Constant => 1 Register
 			switch (child->opcode){
 			default:
-				child_1 = NULL;
-				child->next=child_1;
-				return(child);
+				return(NULL);
 				break;
 			}
 			break;
