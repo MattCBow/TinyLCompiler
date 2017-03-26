@@ -109,9 +109,10 @@ Instruction *childI(Instruction *parent){
 			parent->field3 = field3;
 			// Merge child_1 and child_2
 			parent = child;
+			parent->next = child_1;
 			while(child){
-				printf("%p MERGE ", (void *) child);
-				PrintInstruction(stdout, child);
+				printf("%p MERGE ", (void *) child_1);
+				PrintInstruction(stdout, child_1);
 				if(child_1){
 					child_1 = child_1->next;
 					child=NULL;
@@ -120,21 +121,7 @@ Instruction *childI(Instruction *parent){
 					child_2 = child_2->next;
 				}
 			}
-			/*
-			while(child_2){
-				child->next =child_2;
-				child=child->next;
-				child_2=child_2->next;
-			}*/
-			/*
-			child
-			while(child!=NULL){
-				printf("%p MERGE ", (void *) child);
-				PrintInstruction(stdout,parent);
-				child->next=child_1;
-				child=child->next;
-				child_1=child_1->next;
-			}*/
+
 			return(parent);
 		}
 	}
