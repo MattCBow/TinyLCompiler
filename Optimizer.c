@@ -14,7 +14,7 @@
 #include "Utils.h"
 
 Instruction *childI(Instruction *parent){
-	printf("%p --->", (void *) parent);
+	printf("%p ---> ", (void *) parent);
 	PrintInstruction(stdout,parent);
 	Instruction *child, *child_1, *child_2;
 	for(child=parent; child; child=child->prev){
@@ -82,7 +82,7 @@ Instruction *childI(Instruction *parent){
 					if(parent->field2==child->field2) parent->field1 = field1;
 					// FIND child_2
 					child_1=childI(child);
-					child_2 = childI(parent);
+					//child_2 = childI(parent);
 					// RESET parent
 					parent->opcode = opcode;
 					parent->field1 = field1;
@@ -116,7 +116,7 @@ Instruction *childI(Instruction *parent){
 					if(parent->field2==child->field2) parent->field1 = field1;
 					// FIND child_2
 					child_1=childI(child);
-					child_2 = childI(parent);
+					//child_2 = childI(parent);
 					// RESET parent
 					parent->opcode = opcode;
 					parent->field1 = field1;
