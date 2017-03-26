@@ -14,6 +14,8 @@
 #include "Utils.h"
 
 Instruction *childI(Instruction *parent){
+	printf("%p ----> ", (void *) parent);
+	PrintInstruction(stdout, parent);
 	Instruction *child;
 	int source;
 	for(child=parent; child; child=child->prev){
@@ -83,8 +85,6 @@ Instruction *childI(Instruction *parent){
 			return(child);
 		}
 		if(source == 2){
-			printf("%p PARENT ", (void *) parent);
-			PrintInstruction(stdout, parent);
 			// HOLD parent
 			OpCode opcode;
 			int field1, field2, field3;
@@ -110,9 +110,11 @@ Instruction *childI(Instruction *parent){
 			parent=child;
 			if(child_1>child_2){
 				child->next = child_1;
+				child=child->next;
 			}
 			else{
 				child->next = child_2;
+				child=child->next;
 			}
 			/*
 			while(child){
