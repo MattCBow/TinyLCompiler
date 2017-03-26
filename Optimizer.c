@@ -110,7 +110,7 @@ Instruction *childI(Instruction *parent){
 			parent=child;
 			parent->next = child_1;
 			while(child_1->next!=NULL) child_1 = child_1->next;
-			}
+			
 			//child_1->next=child_2;
 
 			return(parent);
