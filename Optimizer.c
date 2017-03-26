@@ -112,9 +112,9 @@ Instruction *childI(Instruction *parent){
 			//while(child_2) child_2 = child_2->next;
 			//printf("%p ---> ", (void *) out);
 			parent = child;
-			child->next=child_1;
-			while(child->next)child=child->next;
 			child->next=child_2;
+			//while(child->next)child=child->next;
+			//child->next=child_2;
 			return(parent);
 		}
 	}
