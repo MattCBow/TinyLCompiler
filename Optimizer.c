@@ -148,11 +148,12 @@ int main()
 	tail->next = childI(tail);
 	printf("\n\n");
 
+	/*
 	while(tail){
 		printf("%p ---> ", (void *) tail);
 		PrintInstruction(stdout,tail);
 		tail = tail->next;
-	}
+	}*/
 
 	return EXIT_SUCCESS;
 }
