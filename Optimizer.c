@@ -110,7 +110,7 @@ Instruction *childI(Instruction *parent){
 			// Merge child_1 and child_2
 			parent = child;
 			parent->next=child_1;
-			while(child_1){
+			while(child_1 && child_2){
 				child->next=child_1;
 				child=child->next;
 				child_1 = child_1->next;
