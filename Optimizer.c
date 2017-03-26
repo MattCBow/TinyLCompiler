@@ -14,7 +14,7 @@
 #include "Utils.h"
 
 void *childTree(Instruction *parent){
-	PrintInstruction(outfile, cur);
+	PrintInstruction(stdout, cur);
 	parent->critical='C';
 	Instruction *child;
 	int source;
@@ -130,7 +130,7 @@ int main()
 	childTree(cur);
 	printf("\n\n");
 	for(cur=head;cur!=NULL;cur = cur->next)
-		if(cur->critical=='Y') PrintInstruction(outfile, cur);
+		if(cur->critical=='Y') PrintInstruction(stdout, cur);
 
 
 	return EXIT_SUCCESS;
