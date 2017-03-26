@@ -168,7 +168,7 @@ int main()
 	for(int i=0;i<10;i++){
 		printf("%p ---> ", (void *) out);
 		PrintInstruction(stdout,out);
-		out=out->out;
+		out=out->next;
 	}
 	//for(head=out;out->next;out=out->next) out->next->prev = out;
 
