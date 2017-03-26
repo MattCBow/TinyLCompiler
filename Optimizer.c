@@ -110,8 +110,8 @@ Instruction *childI(Instruction *parent){
 
 			while(child_1) child_1 = child_1->next;
 			while(child_2) child_2 = child_2->next;
-			printf("%p ---> ", (void *) child_1);
-			printf("%p ---> ", (void *) child_2);
+			//printf("%p ---> ", (void *) child_1);
+			//printf("%p ---> ", (void *) child_2);
 
 			child->next=child_1;
 			return(parent);
