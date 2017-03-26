@@ -14,7 +14,7 @@
 #include "Utils.h"
 
 void *childTree(Instruction *parent){
-	PrintInstruction(stdout, cur);
+	PrintInstruction(stdout, parent);
 	parent->critical='C';
 	Instruction *child;
 	int source;
