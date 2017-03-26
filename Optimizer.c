@@ -68,30 +68,20 @@ Instruction *childI(Instruction *parent){
 			case LOADI: 		// 1 Constant => 1 Register
 				if(parent->field1==child->field2 || parent->field2==child->field2){
 					// HOLD parent
-					//printf("1B. -------\n");
-					//PrintInstruction(stdout,parent);
 					OpCode opcode;
 					int field1, field2, field3, find_field;
 					opcode = parent->opcode;
-					field1 = parent->field1;
-					field2 = parent->field2;
 					field3 = parent->field3;
-					if(parent->field1==child->field2) find_field = field2;
-					if(parent->field2==child->field2) find_field = field1;
-					// REPLACE parent
+					field2 = parent->field2;
+					field1 = parent->field1;
 					parent->opcode = STOREAI;
-					parent->field1 = find_field;
-					parent->field2 = 0;
 					parent->field3 = 0;
+					parent->field2 = 0;
+					if(parent->field1==child->field2) parent->field1 = field2;
+					if(parent->field2==child->field2) parent->field1 = field1;
 					// FIND child_2
-					//printf("2B. -------\n");
-					//PrintInstruction(stdout,parent);
 					child_1=childI(child);
-					//printf("3B. -------\n");
-					//PrintInstruction(stdout,parent);
 					child_2 = childI(parent);
-					//printf("4B. -------\n");
-					//PrintInstruction(stdout,parent);
 					// RESET parent
 					parent->opcode = opcode;
 					parent->field1 = field1;
@@ -112,28 +102,20 @@ Instruction *childI(Instruction *parent){
 			case DIV:
 				if(parent->field1==child->field3 || parent->field2==child->field3){
 					// HOLD parent
-					//printf("1A. -------\n");
-					PrintInstruction(stdout,parent);
 					OpCode opcode;
-					int field1, field2, field3;
+					int field1, field2, field3, find_field;
 					opcode = parent->opcode;
-					field1 = parent->field1;
-					field2 = parent->field2;
 					field3 = parent->field3;
+					field2 = parent->field2;
+					field1 = parent->field1;
 					parent->opcode = STOREAI;
+					parent->field3 = 0;
+					parent->field2 = 0;
 					if(parent->field1==child->field2) parent->field1 = field2;
 					if(parent->field2==child->field2) parent->field1 = field1;
-					parent->field2 = 0;
-					parent->field3 = 0;
 					// FIND child_2
-					//printf("2A. -------\n");
-					//PrintInstruction(stdout,parent);
 					child_1=childI(child);
-					///printf("3A. -------\n");
-					//PrintInstruction(stdout,parent);
 					child_2 = childI(parent);
-					//printf("4A. -------\n");
-					//PrintInstruction(stdout,parent);
 					// RESET parent
 					parent->opcode = opcode;
 					parent->field1 = field1;
@@ -143,6 +125,7 @@ Instruction *childI(Instruction *parent){
 					//for(child=child_1; child_1->next; child_1=child_1->next);
 					//child_1->next=child_2;
 					// return
+					//child->next = child_1;
 					return(child);
 				}
 				break;
@@ -171,7 +154,7 @@ int main()
 	if (head) PrintInstructionList(stdout, head);
 	printf("\n\n");
 
-	//out->next = childI(out);
+	out->next = childI(out);
 	//for(head=out;out->next;out=out->next) out->next->prev = out;
 
 
