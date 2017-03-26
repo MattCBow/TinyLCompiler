@@ -164,10 +164,13 @@ int main()
 	out = childI(out);
 	head->next = out;
 	printf("\n\n");
+	out = head;
 
-	for(out = head;out; out=out->next){
+	int i;
+	for(i=0;i<10;i++){
 		printf("%p ---> ", (void *) out);
 		PrintInstruction(stdout,out);
+		out=out->next;
 	}
 	//for(head=out;out->next;out=out->next) out->next->prev = out;
 
