@@ -139,7 +139,7 @@ int main()
 		}
 	}
 
-	//if (head) PrintInstructionList(stdout, head);
+	if (head) PrintInstructionList(stdout, head);
 
 	return EXIT_SUCCESS;
 }
