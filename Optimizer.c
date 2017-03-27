@@ -123,7 +123,7 @@ int main()
 	Instruction *cur, *crit;
 	for(cur=head; cur; cur=cur->next){
 		if(cur->opcode==OUTPUTAI) childTree(cur);
-		cur->critical='N';
+		else cur->critical='N';
 	}
 
 	cur = crit = head;
@@ -135,7 +135,7 @@ int main()
 			crit=cur;
 		}
 		else{
-			//free(cur);
+			free(cur);
 		}
 	}
 	printf("\n\n");
