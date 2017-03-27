@@ -128,7 +128,7 @@ int main()
 
 	cur = crit = head;
 	head->critical='C';
-	for(cur=head;cur!=NULL;cur = cur->next){
+	for(cur=head->next;cur!=NULL;cur = cur->next){
 		if(cur->critical=='C'){
 			PrintInstruction(stdout,cur);
 			crit->next=cur;
