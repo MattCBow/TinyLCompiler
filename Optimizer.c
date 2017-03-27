@@ -120,7 +120,7 @@ int main()
 		exit(EXIT_FAILURE);
 	}
 
-	Instruction *cur, crit;
+	Instruction *cur, *crit;
 	for(cur=head; cur->opcode!=OUTPUTAI; cur=cur->next){
 		if(cur->opcode==OUTPUTAI) childTree(cur);
 		cur->critical='N';
