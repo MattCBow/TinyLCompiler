@@ -121,6 +121,7 @@ int main()
 	}
 
 	Instruction *cur, *crit;
+	head->critical='Y';
 	for(cur=head; cur; cur=cur->next){
 		if(cur->opcode==OUTPUTAI) childTree(cur);
 		else cur->critical='N';
