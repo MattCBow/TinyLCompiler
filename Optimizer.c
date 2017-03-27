@@ -130,16 +130,16 @@ int main()
 	for(cur=head;cur!=NULL;cur = cur->next){
 		if(cur->critical=='C'){
 			PrintInstruction(stdout,cur);
-			crit->next=cur;
-			cur->prev=crit;
-			crit=cur;
+			//crit->next=cur;
+			//cur->prev=crit;
+			//crit=cur;
 		}
 		else{
-			free(cur);
+			//xfree(cur);
 		}
 	}
 
-	if (head) PrintInstructionList(stdout, head);
+	//if (head) PrintInstructionList(stdout, head);
 
 	return EXIT_SUCCESS;
 }
