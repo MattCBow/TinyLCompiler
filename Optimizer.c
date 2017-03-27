@@ -14,7 +14,6 @@
 #include "Utils.h"
 
 void childTree(Instruction *parent){
-	PrintInstruction(stdout, parent);
 	parent->critical='C';
 	Instruction *child;
 	int source;
@@ -121,19 +120,26 @@ int main()
 		exit(EXIT_FAILURE);
 	}
 
-	if (head) PrintInstructionList(stdout, head);
-	printf("\n\n");
-
-	Instruction *cur;
-	for(cur=head; cur->opcode!=OUTPUTAI; cur=cur->next)
+	Instruction *cur, crit;
+	for(cur=head; cur->opcode!=OUTPUTAI; cur=cur->next){
+		if(cur->opcode==OUTPUTAI) childTree(cur);
 		cur->critical='N';
-	childTree(cur);
-	printf("\n\n");
+	}
+
+	cur = crit = head;
 	for(cur=head;cur!=NULL;cur = cur->next){
 		if(cur->critical=='C'){
-			PrintInstruction(stdout, cur);
+			crit->next=cur;
+			cur->prev=crit;
+			crit=cur;
+		}
+		else{
+			free(cur);
 		}
 	}
+	cur->next=NULL;
+
+	if (head) PrintInstructionList(stdout, head);
 
 	return EXIT_SUCCESS;
 }
