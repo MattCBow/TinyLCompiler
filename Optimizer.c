@@ -135,7 +135,7 @@ int main()
 			crit=cur;
 		}
 		else{
-			free(cur);
+			//free(cur);
 		}
 	}
 	cur->next=NULL;
