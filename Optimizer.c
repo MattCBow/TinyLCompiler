@@ -138,8 +138,6 @@ int main()
 			free(cur);
 		}
 	}
-	cur = LastInstruction(head);
-	cur->next=NULL;
 	printf("\n\n");
 
 	if (head) PrintInstructionList(stdout, head);
