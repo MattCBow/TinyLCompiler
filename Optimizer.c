@@ -135,12 +135,12 @@ int main()
 			crit=cur;
 		}
 		else{
-			//free(cur);
+			free(cur);
 		}
 	}
 	cur->next=NULL;
 
-	if (head) PrintInstructionList(stdout, head);
+	//if (head) PrintInstructionList(stdout, head);
 
 	return EXIT_SUCCESS;
 }
